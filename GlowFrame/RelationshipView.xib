@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RelationshipView" customModule="GlowFrame" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TNC-ao-Ggi">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <animations/>
+                </imageView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="TNC-ao-Ggi" secondAttribute="trailing" id="2mb-xE-age"/>
+                <constraint firstItem="TNC-ao-Ggi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="NqY-wB-shd"/>
+                <constraint firstItem="TNC-ao-Ggi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lo4-Lw-vdI"/>
+                <constraint firstAttribute="bottom" secondItem="TNC-ao-Ggi" secondAttribute="bottom" id="uhu-gI-ghi"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView" destination="TNC-ao-Ggi" id="OGf-QC-kMR"/>
+            </connections>
+        </view>
+    </objects>
+</document>
