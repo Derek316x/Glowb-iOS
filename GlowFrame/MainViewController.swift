@@ -22,6 +22,9 @@ class MainViewController: UIViewController,
         ]
     }()
     
+    
+    // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,11 +32,10 @@ class MainViewController: UIViewController,
         collectionView.dataSource = self
         
         registerForPreviewingWithDelegate(self, sourceView: collectionView)
-        
-//        if let settingsViewController = storyboard?.instantiateViewControllerWithIdentifier("SettingsIdentifier") {
-//            embedViewController(settingsViewController, inView: contentView)
-//        }
     }
+    
+    
+    // MARK: - Collection view data source
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -53,9 +55,15 @@ class MainViewController: UIViewController,
         return UICollectionViewCell()
     }
     
+    
+    // MARK: - Collection view flow layout
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: view.frame.size.width, height: view.frame.size.height)
     }
+    
+    
+    // MARK: - Previewing context delegate
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         if let _ = collectionView.indexPathsForSelectedItems(),
@@ -76,6 +84,8 @@ class MainViewController: UIViewController,
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
         
     }
+    
+    // MARK: - Utility
     
     override func prefersStatusBarHidden() -> Bool {
         return true
