@@ -18,6 +18,11 @@ class MainViewController: UIViewController,
     
     var relationships: [Relationship] = {
         return [
+          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
+          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
+          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
+          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
+          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
           Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267"))
         ]
     }()
@@ -62,7 +67,7 @@ class MainViewController: UIViewController,
         return CGSize(width: view.frame.size.width, height: view.frame.size.height)
     }
     
-    
+//    
     // MARK: - Previewing context delegate
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {

@@ -10,12 +10,37 @@ import UIKit
 
 class ImageViewCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
+    lazy var imageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .ScaleAspectFill
+        return iv
+    }()
+    
+    lazy var scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.pagingEnabled = true
+        sv.showsVerticalScrollIndicator = false
+        return sv
+    }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        layer.cornerRadius = 14.0
+        imageView.layer.cornerRadius = 14.0
+        imageView.clipsToBounds = true
+        
+        contentView.addSubview(scrollView)
+        scrollView.addSubview(imageView)
+
+    }
+    
+    override func layoutSubviews() {
+        scrollView.frame = bounds
+        imageView.frame = bounds
+        imageView.frame.origin.y = frame.size.height
+        scrollView.contentSize = CGSize(width: frame.size.width, height: frame.size.height * 2.0)
+        scrollView.contentOffset = CGPoint(x: 0, y: frame.size.height)
+        super.layoutSubviews()
     }
     
 }

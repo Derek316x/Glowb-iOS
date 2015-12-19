@@ -34,23 +34,9 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="151" height="151"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SUi-lj-lgB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="151" height="151"/>
-                                                </imageView>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="SUi-lj-lgB" firstAttribute="leading" secondItem="iQY-fe-6Bi" secondAttribute="leading" id="SVi-fd-7bg"/>
-                                            <constraint firstAttribute="trailing" secondItem="SUi-lj-lgB" secondAttribute="trailing" id="Ta4-ey-Lri"/>
-                                            <constraint firstAttribute="bottom" secondItem="SUi-lj-lgB" secondAttribute="bottom" id="aBy-EO-WDb"/>
-                                            <constraint firstItem="SUi-lj-lgB" firstAttribute="top" secondItem="iQY-fe-6Bi" secondAttribute="top" id="ox4-ae-XkL"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="imageView" destination="SUi-lj-lgB" id="Mps-ph-fIV"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
