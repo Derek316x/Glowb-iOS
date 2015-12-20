@@ -14,4 +14,10 @@ struct Device {
     init(deviceID: String) {
         self.deviceID = deviceID
     }
+    
+    func loadInfo(completion: (info: [String: AnyObject]) -> Void) {
+        ParticleAPIManager.fetchDeviceInfo(self) { (info: [String : AnyObject]) -> Void in
+            print(info)
+        }
+    }
 }

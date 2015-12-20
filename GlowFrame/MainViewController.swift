@@ -13,16 +13,11 @@ class MainViewController: UIViewController,
     UICollectionViewDelegate,
     UIViewControllerPreviewingDelegate,
     UICollectionViewDataSource {
-    
+
     @IBOutlet weak var collectionView: UICollectionView!
     
     var relationships: [Relationship] = {
         return [
-          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
-          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
-          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
-          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
-          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
           Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267"))
         ]
     }()
@@ -33,10 +28,23 @@ class MainViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        setup()
         
         registerForPreviewingWithDelegate(self, sourceView: collectionView)
+    }
+    
+    
+    // MARK: - Setup
+    
+    private func setup() {
+        setupCollectionView()
+    }
+    
+    private func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.registerNib(NewRelationshipCollectionViewCell.Nib, forCellWithReuseIdentifier: NewRelationshipCollectionViewCell.CellIdentifier)
+        collectionView.registerNib(RelationshipCollectionViewCell.Nib, forCellWithReuseIdentifier: RelationshipCollectionViewCell.CellIdentifier)
     }
     
     
@@ -47,17 +55,36 @@ class MainViewController: UIViewController,
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return relationships.count
+        return relationships.count + 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCollectionViewCellIdentifier", forIndexPath: indexPath) as? ImageViewCollectionViewCell {
-            
-            cell.imageView.image = relationships[indexPath.row].image
-            return cell
+        if indexPath.row == relationships.count {
+            if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NewRelationshipCollectionViewCell.CellIdentifier, forIndexPath: indexPath) as? NewRelationshipCollectionViewCell {
+                
+                cell.newItemButtonTappedHandler = { [unowned self] in
+                    self.displayNewRelationship()
+                }
+                
+                return cell
+            }
+        } else {
+            if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(RelationshipCollectionViewCell.CellIdentifier, forIndexPath: indexPath) as? RelationshipCollectionViewCell {
+                
+                let relationship = relationships[indexPath.row]
+                cell.relationship = relationship
+                return cell
+            }
         }
-        
+    
         return UICollectionViewCell()
+    }
+    
+    
+    // MARK: - 
+    
+    private func displayNewRelationship() {
+        print("do it")
     }
     
     
@@ -67,7 +94,7 @@ class MainViewController: UIViewController,
         return CGSize(width: view.frame.size.width, height: view.frame.size.height)
     }
     
-//    
+    
     // MARK: - Previewing context delegate
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
@@ -89,6 +116,7 @@ class MainViewController: UIViewController,
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
         
     }
+    
     
     // MARK: - Utility
     

@@ -10,6 +10,6 @@ import Foundation
 
 class GlowAPIManager {
     class func glowForRelationship(relationship: Relationship) {
-        ParticleAPIManager.callFunc("glow", forDeviceID: relationship.device.deviceID, withArgs: "purple")
+        ParticleAPIManager.callFunc("glow", forDevice: relationship.device, withArgs: "purple")
     }
 }
