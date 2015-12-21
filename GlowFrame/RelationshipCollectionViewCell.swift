@@ -11,13 +11,13 @@ import UIKit
 class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate {
     
     private let VISIBLE_IMAGE_PORTION: CGFloat = 60.0
+    private var _updatingDevice = false
     
     var firstLoad = true
     
     var relationship: Relationship? {
         didSet {
             self.imageView.image = relationship!.image
-            deviceDetailView.device = relationship?.device
         }
     }
     
@@ -41,6 +41,9 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         let v = DeviceManagementView.viewFromNib()!
         return v
     }()
+    
+    
+    // MARK: - Life cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -81,10 +84,39 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     }
     
     
+    // MARK: - Imparative
+    
+    func eagerLoad() {
+        updateDeviceInfo()
+    }
+    
+    func resetScroll() {
+        scrollView.setContentOffset(CGPoint(x: 0, y: frame.size.height - VISIBLE_IMAGE_PORTION), animated: true)
+    }
+    
+    private func updateDeviceInfo(force: Bool = false) {
+        relationship?.device.updateInfo(force, completion: { (device: Device) -> Void in
+            self.deviceDetailView.displayDevice(device)
+            self.relationship!.device = device
+            self._updatingDevice = false
+        })
+    }
+    
+    
     // MARK: - Scroll view delegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        deviceDetailView.loadDeviceInfo()
+        
+        guard !_updatingDevice else { return }
+        _updatingDevice = true
+        
+        updateDeviceInfo()
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y < -VISIBLE_IMAGE_PORTION {
+            updateDeviceInfo(true)
+        }
     }
     
 }

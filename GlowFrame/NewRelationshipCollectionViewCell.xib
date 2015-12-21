@@ -14,10 +14,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="225" height="225"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFU-5r-PSr">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFU-5r-PSr">
                         <rect key="frame" x="0.0" y="0.0" width="225" height="225"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                        <state key="normal" title="+"/>
+                        <state key="normal" title="+" image="add"/>
                         <connections>
                             <action selector="newItemButtonTapped:" destination="FQ2-pY-5Ws" eventType="touchUpInside" id="UkH-8o-JOF"/>
                         </connections>
@@ -35,4 +34,7 @@
             <point key="canvasLocation" x="195.5" y="346.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="add" width="78" height="78"/>
+    </resources>
 </document>

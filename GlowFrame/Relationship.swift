@@ -12,7 +12,7 @@ import UIKit
 class Relationship {
     
     let image: UIImage
-    let device: Device
+    var device: Device
     
     init(image: UIImage, device: Device) {
         self.image = image

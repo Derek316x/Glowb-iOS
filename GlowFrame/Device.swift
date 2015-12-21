@@ -17,6 +17,7 @@ struct Device {
     let name: String?
     let updatedAt: NSDate?
     let connected: Bool?
+    let type: String?
     
     init?(info: [String: AnyObject]) {
         guard let id = info["id"] as? String else { return nil }
@@ -27,6 +28,12 @@ struct Device {
         name = info["name"] as? String
         updatedAt = NSDate()
         connected = info["connected"] as? Bool
+        
+        var t: String? = nil
+        if let productID = info["product_id"] as? Int {
+            t = productID == 0 ? "Core" : "Photon"
+        }
+        type = t
     }
     
     init(deviceID: String) {
@@ -36,13 +43,16 @@ struct Device {
         name = nil
         updatedAt = nil
         connected = nil
+        type = nil
     }
 
-    func updateInfo(completion: (Device) -> Void) -> Request? {
+    func updateInfo(force: Bool = false, completion: (Device) -> Void) -> Request? {
         
         // 2 minute threshold
-        if let updatedAt = updatedAt {
-            guard NSDate().timeIntervalSinceDate(updatedAt) > 60 * 2 else { return nil }
+        if force == false {
+            if let updatedAt = updatedAt {
+                guard NSDate().timeIntervalSinceDate(updatedAt) > 60 * 2 else { return nil }
+            }
         }
         
         return ParticleAPIManager.fetchDeviceInfo(self) { (info: [String : AnyObject]) -> Void in

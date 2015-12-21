@@ -23,15 +23,7 @@ class DeviceManagementView: UIView {
     
     @IBOutlet weak var deviceNameLabel: UILabel!
     @IBOutlet weak var deviceStatusImageView: UIImageView!
-    
-    var device: Device? {
-        didSet {
-            deviceNameLabel.text = device!.name
-            if let connection = device!.connected {
-                deviceStatusImageView.image = UIImage.imageForConnectionState(connection)
-            }
-        }
-    }
+    @IBOutlet weak var deviceProductTypeLabel: UILabel!
     
     private var loadDeviceInfoTask: Request?
     
@@ -39,14 +31,14 @@ class DeviceManagementView: UIView {
         super.awakeFromNib()
     }
     
-    func loadDeviceInfo() {
-        loadDeviceInfoTask = device?.updateInfo({ (device: Device) -> Void in
-            self.device = device
-        })
-    }
-
-    @IBAction func refreshButtonTapped(sender: AnyObject) {
-        loadDeviceInfo()
+    func displayDevice(device: Device) {
+        deviceNameLabel.text = device.name
+        if let type = device.type {
+            deviceProductTypeLabel.text = "(\(type))"
+        }
+        if let connection = device.connected {
+            deviceStatusImageView.image = UIImage.imageForConnectionState(connection)
+        }
     }
     
     class func viewFromNib() -> DeviceManagementView? {

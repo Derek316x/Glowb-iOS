@@ -18,7 +18,8 @@ class MainViewController: UIViewController,
     
     var relationships: [Relationship] = {
         return [
-          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267"))
+          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
+          Relationship(image: UIImage(named: "hannah")!, device: Device(deviceID: "300035000547343232363230"))
         ]
     }()
     
@@ -76,7 +77,7 @@ class MainViewController: UIViewController,
                 return cell
             }
         }
-    
+        
         return UICollectionViewCell()
     }
     
@@ -84,7 +85,10 @@ class MainViewController: UIViewController,
     // MARK: - 
     
     private func displayNewRelationship() {
-        print("do it")
+        let viewController = NewRelationshipViewController(nibName: NewRelationshipViewController.NibName, bundle: nil)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        
+        presentViewController(navigationController, animated: true, completion: nil)
     }
     
     
@@ -94,23 +98,31 @@ class MainViewController: UIViewController,
         return CGSize(width: view.frame.size.width, height: view.frame.size.height)
     }
     
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        if let cell = cell as? RelationshipCollectionViewCell {
+            cell.eagerLoad()
+        }
+    }
+    
     
     // MARK: - Previewing context delegate
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        if let _ = collectionView.indexPathsForSelectedItems(),
+        guard let _ = collectionView.indexPathsForSelectedItems(),
             indexPath = collectionView.indexPathForItemAtPoint(location),
-            cell = collectionView.cellForItemAtIndexPath(indexPath)
-        {
-            previewingContext.sourceRect = cell.frame
-            let viewController = HeartViewController(nibName: HeartViewController.nibName(), bundle: nil)
-            viewController.preferredContentSize = CGSize(width: view.frame.size.width - 30, height: view.frame.size.width - 30)
-            
-            GlowAPIManager.glowForRelationship(relationships[indexPath.row])
-            return viewController
+            cell = collectionView.cellForItemAtIndexPath(indexPath) else {
+                return nil
         }
         
-        return nil
+        guard indexPath.row != relationships.count else { return nil }
+        
+        previewingContext.sourceRect = cell.frame
+        let viewController = HeartViewController(nibName: HeartViewController.nibName(), bundle: nil)
+        viewController.preferredContentSize = CGSize(width: view.frame.size.width - 30, height: view.frame.size.width - 30)
+        
+        GlowAPIManager.glowForRelationship(relationships[indexPath.row])
+        
+        return viewController
     }
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
@@ -118,6 +130,14 @@ class MainViewController: UIViewController,
     }
     
     // MARK: - Scroll view delegate
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        if let cells = collectionView.visibleCells() as? [RelationshipCollectionViewCell] {
+            for cell in cells {
+                cell.resetScroll()
+            }
+        }
+    }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView == collectionView && scrollView.contentOffset.x < -80 {
