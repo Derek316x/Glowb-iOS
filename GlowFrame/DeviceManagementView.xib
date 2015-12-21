@@ -11,18 +11,54 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="beep" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ad-em-xDZ">
-                    <rect key="frame" x="280.5" y="290" width="39" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nsf-Fl-KC8">
+                    <rect key="frame" x="270" y="40" width="61" height="53"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmC-eS-HM8">
+                            <rect key="frame" x="0.0" y="0.0" width="35" height="53"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                            <color key="textColor" red="0.26327730429292928" green="0.26327730429292928" blue="0.26327730429292928" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="disconnected" translatesAutoresizingMaskIntoConstraints="NO" id="2aV-Qm-ZTE">
+                            <rect key="frame" x="40.5" y="17" width="20" height="20"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="2aV-Qm-ZTE" secondAttribute="trailing" id="ASH-Pa-6Ch"/>
+                        <constraint firstItem="jmC-eS-HM8" firstAttribute="leading" secondItem="Nsf-Fl-KC8" secondAttribute="leading" id="QKr-By-xXQ"/>
+                        <constraint firstAttribute="bottom" secondItem="jmC-eS-HM8" secondAttribute="bottom" id="SDy-Id-ozK"/>
+                        <constraint firstItem="jmC-eS-HM8" firstAttribute="top" secondItem="Nsf-Fl-KC8" secondAttribute="top" id="Uqg-W5-EmR"/>
+                        <constraint firstItem="2aV-Qm-ZTE" firstAttribute="centerY" secondItem="jmC-eS-HM8" secondAttribute="centerY" id="nCF-BY-OMk"/>
+                        <constraint firstItem="2aV-Qm-ZTE" firstAttribute="leading" secondItem="jmC-eS-HM8" secondAttribute="trailing" constant="6" id="zF1-XN-Qku"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ay5-ri-shT">
+                    <rect key="frame" x="276" y="490" width="49" height="30"/>
+                    <state key="normal" title="refresh">
+                        <color key="titleColor" red="0.68795375631313127" green="0.68795375631313127" blue="0.68795375631313127" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="refreshButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="bHk-In-3Em"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="6Ad-em-xDZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aKf-xN-YpI"/>
-                <constraint firstItem="6Ad-em-xDZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dck-15-9V7"/>
+                <constraint firstItem="Nsf-Fl-KC8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="8IC-Wx-eZ7"/>
+                <constraint firstItem="Ay5-ri-shT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="91p-f6-ei4"/>
+                <constraint firstAttribute="bottom" secondItem="Ay5-ri-shT" secondAttribute="bottom" constant="80" id="J1v-Wa-DD1"/>
+                <constraint firstItem="Nsf-Fl-KC8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="r3S-mv-J6V"/>
             </constraints>
+            <connections>
+                <outlet property="deviceNameLabel" destination="jmC-eS-HM8" id="B90-ge-5j9"/>
+                <outlet property="deviceStatusImageView" destination="2aV-Qm-ZTE" id="hQA-c0-XJh"/>
+            </connections>
+            <point key="canvasLocation" x="121" y="325"/>
         </view>
     </objects>
+    <resources>
+        <image name="disconnected" width="20" height="20"/>
+    </resources>
 </document>

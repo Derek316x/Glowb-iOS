@@ -10,17 +10,14 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-//    @IBAction func glowBlueButtonTapped(sender: AnyObject) {
-//        GlowAPIManager.glowForRelationship(<#T##relationship: Relationship##Relationship#>)
-//        ParticleAPIManager.callFunc("glow", withArgs: "blue");
-//    }
-//
-//    @IBAction func glowPurpleButtonTapped(sender: AnyObject) {
-//        ParticleAPIManager.callFunc("glow", withArgs: "purple");
-//    }
-//    
-//    @IBAction func doneButtonTapped(sender: AnyObject) {
-//        dismissViewControllerAnimated(true, completion: nil)
-//    }
+    @IBAction func glowBlueButtonTapped(sender: AnyObject) {
+    }
+
+    @IBAction func glowPurpleButtonTapped(sender: AnyObject) {
+    }
+    
+    @IBAction func doneButtonTapped(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D1FE2A11C22563500678CA5 /* UIViewController+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1FE2A01C22563500678CA5 /* UIViewController+Embed.swift */; };
 		8D37D2E11C15EB5B00B8E148 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */; };
 		8D37D2E31C15EC0700B8E148 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37D2E21C15EC0700B8E148 /* Device.swift */; };
 		8D5AA57A1C151B3C00FBB1A2 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */; };
@@ -34,7 +33,6 @@
 /* Begin PBXFileReference section */
 		3E29C4E24591EF95097E943E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4AFC7696F0DDAC677F92D606 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D1FE2A01C22563500678CA5 /* UIViewController+Embed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Embed.swift"; sourceTree = "<group>"; };
 		8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8D37D2E21C15EC0700B8E148 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 				8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */,
 				8D5AA5811C1526CD00FBB1A2 /* HeartViewController.swift */,
 				8DD708311C15F6A0006570B4 /* RelationshipView.swift */,
-				8D1FE2A01C22563500678CA5 /* UIViewController+Embed.swift */,
 				8DD708331C15FB88006570B4 /* Model */,
 				8DD708341C15FB9D006570B4 /* UI */,
 				8DC319921C138B4D00B4E6E0 /* Info.plist */,
@@ -283,7 +280,6 @@
 				8DA3AAD11C1D211C0065B6D9 /* GlowAPIManager.swift in Sources */,
 				8D714B071C262618008E105F /* NewRelationshipCollectionViewCell.swift in Sources */,
 				8D5AA5831C1526CD00FBB1A2 /* HeartViewController.swift in Sources */,
-				8D1FE2A11C22563500678CA5 /* UIViewController+Embed.swift in Sources */,
 				8DC319871C138B4D00B4E6E0 /* AppDelegate.swift in Sources */,
 				8D5C65BA1C260E8E00F48F98 /* DeviceManagementView.swift in Sources */,
 				8D5AA57A1C151B3C00FBB1A2 /* Relationship.swift in Sources */,

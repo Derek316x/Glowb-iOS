@@ -7,21 +7,48 @@
 //
 
 import UIKit
+import Alamofire
+
+extension UIImage {
+    class func imageForConnectionState(connected: Bool) -> UIImage {
+        if (connected) {
+            return UIImage(named: "connected")!
+        } else {
+            return UIImage(named: "disconnected")!
+        }
+    }
+}
 
 class DeviceManagementView: UIView {
     
-    var device: Device?
+    @IBOutlet weak var deviceNameLabel: UILabel!
+    @IBOutlet weak var deviceStatusImageView: UIImageView!
     
-    private var loadDeviceInfoTask: NSURLSessionDataTask?
-    
-    func loadDeviceInfo() {
-        guard let device = device else { return }
-        
-        device.loadInfo { (info) -> Void in
-            print("DID IT ALL THE WAY")
+    var device: Device? {
+        didSet {
+            deviceNameLabel.text = device!.name
+            if let connection = device!.connected {
+                deviceStatusImageView.image = UIImage.imageForConnectionState(connection)
+            }
         }
     }
+    
+    private var loadDeviceInfoTask: Request?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    func loadDeviceInfo() {
+        loadDeviceInfoTask = device?.updateInfo({ (device: Device) -> Void in
+            self.device = device
+        })
+    }
 
+    @IBAction func refreshButtonTapped(sender: AnyObject) {
+        loadDeviceInfo()
+    }
+    
     class func viewFromNib() -> DeviceManagementView? {
         guard let view = NSBundle.mainBundle().loadNibNamed(self.nibName(), owner: self, options: nil)[0] as? DeviceManagementView else {
             return nil

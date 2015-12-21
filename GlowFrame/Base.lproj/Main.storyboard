@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" id="D5T-2O-4b6">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="pls-iS-1gd">
                             <connections>
-                                <segue destination="2fL-Eg-Ttt" kind="presentation" id="JrN-mv-4p4"/>
+                                <segue destination="2fL-Eg-Ttt" kind="presentation" identifier="SettingsSegueIdentifier" id="JrN-mv-4p4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -78,7 +78,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTe-hX-Ijk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="100"/>
+            <point key="canvasLocation" x="751" y="100"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="jb4-dT-nu4">
@@ -125,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yj8-DB-fvu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1702" y="105"/>
+            <point key="canvasLocation" x="1424" y="105"/>
         </scene>
     </scenes>
 </document>

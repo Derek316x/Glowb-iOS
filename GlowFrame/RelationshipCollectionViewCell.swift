@@ -12,6 +12,8 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     
     private let VISIBLE_IMAGE_PORTION: CGFloat = 60.0
     
+    var firstLoad = true
+    
     var relationship: Relationship? {
         didSet {
             self.imageView.image = relationship!.image
@@ -46,19 +48,21 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         contentView.addSubview(deviceDetailView)
         contentView.addSubview(scrollView)
         scrollView.addSubview(imageView)
-
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        deviceDetailView.frame = bounds
-        scrollView.frame = bounds
-        imageView.frame = bounds
-        imageView.frame.origin.y = frame.size.height - VISIBLE_IMAGE_PORTION
-        scrollView.contentSize = CGSize(width: frame.size.width, height: frame.size.height * 2.0 - VISIBLE_IMAGE_PORTION)
-        scrollView.contentOffset = CGPoint(x: 0, y: frame.size.height - VISIBLE_IMAGE_PORTION)
-        print(bounds)
+        if firstLoad {
+            firstLoad = false
+            
+            deviceDetailView.frame = bounds
+            scrollView.frame = bounds
+            imageView.frame = bounds
+            imageView.frame.origin.y = frame.size.height - VISIBLE_IMAGE_PORTION
+            scrollView.contentSize = CGSize(width: frame.size.width, height: frame.size.height * 2.0 - VISIBLE_IMAGE_PORTION)
+            scrollView.contentOffset = CGPoint(x: 0, y: frame.size.height - VISIBLE_IMAGE_PORTION)
+        }
     }
     
     

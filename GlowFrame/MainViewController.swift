@@ -117,6 +117,13 @@ class MainViewController: UIViewController,
         
     }
     
+    // MARK: - Scroll view delegate
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == collectionView && scrollView.contentOffset.x < -80 {
+            performSegueWithIdentifier("SettingsSegueIdentifier", sender: self)
+        }
+    }
     
     // MARK: - Utility
     
