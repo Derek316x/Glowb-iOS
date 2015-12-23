@@ -1,3 +1,3 @@
 # Glowb
 
-iOS app that communicates with particle hardware.
+iOS app to communicate with Particle hardware.
