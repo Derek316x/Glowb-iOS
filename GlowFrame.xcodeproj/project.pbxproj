@@ -20,6 +20,7 @@
 		8D873E9F1C27C37400938211 /* NewRelationshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D873E9D1C27C37400938211 /* NewRelationshipViewController.swift */; };
 		8D873EA01C27C37400938211 /* NewRelationshipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D873E9E1C27C37400938211 /* NewRelationshipViewController.xib */; };
 		8D9CC9BF1C154B1C000EC9FB /* ParticleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */; };
+		8DA21F601C2B159F00E27DA3 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DA21F5F1C2B159F00E27DA3 /* Keys.plist */; };
 		8DA3AAD11C1D211C0065B6D9 /* GlowAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA3AAD01C1D211C0065B6D9 /* GlowAPIManager.swift */; };
 		8DC319871C138B4D00B4E6E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC319861C138B4D00B4E6E0 /* AppDelegate.swift */; };
 		8DC319891C138B4D00B4E6E0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC319881C138B4D00B4E6E0 /* SettingsViewController.swift */; };
@@ -49,6 +50,7 @@
 		8D873E9D1C27C37400938211 /* NewRelationshipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRelationshipViewController.swift; sourceTree = "<group>"; };
 		8D873E9E1C27C37400938211 /* NewRelationshipViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRelationshipViewController.xib; sourceTree = "<group>"; };
 		8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleAPIManager.swift; sourceTree = "<group>"; };
+		8DA21F5F1C2B159F00E27DA3 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		8DA3AAD01C1D211C0065B6D9 /* GlowAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowAPIManager.swift; sourceTree = "<group>"; };
 		8DC319831C138B4D00B4E6E0 /* GlowFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlowFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC319861C138B4D00B4E6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				8DD708341C15FB9D006570B4 /* UI */,
 				8DC3198D1C138B4D00B4E6E0 /* Assets.xcassets */,
 				8DC319921C138B4D00B4E6E0 /* Info.plist */,
+				8DA21F5F1C2B159F00E27DA3 /* Keys.plist */,
 			);
 			path = GlowFrame;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				8D5C65BC1C260F1B00F48F98 /* DeviceManagementView.xib in Resources */,
 				8DC3198E1C138B4D00B4E6E0 /* Assets.xcassets in Resources */,
 				8D714B051C262609008E105F /* NewRelationshipCollectionViewCell.xib in Resources */,
+				8DA21F601C2B159F00E27DA3 /* Keys.plist in Resources */,
 				8D714B091C2668EE008E105F /* RelationshipCollectionViewCell.xib in Resources */,
 				8DC3198C1C138B4D00B4E6E0 /* Main.storyboard in Resources */,
 				8D873EA01C27C37400938211 /* NewRelationshipViewController.xib in Resources */,
