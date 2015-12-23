@@ -16,7 +16,7 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFU-5r-PSr">
                         <rect key="frame" x="0.0" y="0.0" width="225" height="225"/>
-                        <state key="normal" title="+" image="add"/>
+                        <state key="normal" image="add"/>
                         <connections>
                             <action selector="newItemButtonTapped:" destination="FQ2-pY-5Ws" eventType="touchUpInside" id="UkH-8o-JOF"/>
                         </connections>

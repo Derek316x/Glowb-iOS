@@ -82,6 +82,14 @@ class MainViewController: UIViewController,
     }
     
     
+    // MARK: - Collection view delegate
+    
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        if let cell = cell as? RelationshipCollectionViewCell {
+            cell.eagerLoad()
+        }
+    }
+    
     // MARK: - 
     
     private func displayNewRelationship() {
@@ -96,12 +104,6 @@ class MainViewController: UIViewController,
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: view.frame.size.width, height: view.frame.size.height)
-    }
-    
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if let cell = cell as? RelationshipCollectionViewCell {
-            cell.eagerLoad()
-        }
     }
     
     

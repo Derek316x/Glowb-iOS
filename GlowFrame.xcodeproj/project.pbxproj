@@ -29,6 +29,7 @@
 		8DD708301C15F693006570B4 /* RelationshipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD7082F1C15F693006570B4 /* RelationshipView.xib */; };
 		8DD708321C15F6A0006570B4 /* RelationshipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD708311C15F6A0006570B4 /* RelationshipView.swift */; };
 		8DD708361C15FF06006570B4 /* RelationshipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD708351C15FF06006570B4 /* RelationshipCollectionViewCell.swift */; };
+		8DEFEB951C2AFFE5003CCE8A /* HighlightImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEFEB941C2AFFE5003CCE8A /* HighlightImageView.swift */; };
 		E85CB049B12670639EB78630 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AFC7696F0DDAC677F92D606 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		8DD7082F1C15F693006570B4 /* RelationshipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelationshipView.xib; sourceTree = "<group>"; };
 		8DD708311C15F6A0006570B4 /* RelationshipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipView.swift; sourceTree = "<group>"; };
 		8DD708351C15FF06006570B4 /* RelationshipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipCollectionViewCell.swift; sourceTree = "<group>"; };
+		8DEFEB941C2AFFE5003CCE8A /* HighlightImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightImageView.swift; sourceTree = "<group>"; };
 		F2F5CAB75E75548D2D548B35 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				8D714B061C262618008E105F /* NewRelationshipCollectionViewCell.swift */,
 				8D5C65BB1C260F1B00F48F98 /* DeviceManagementView.xib */,
 				8D5C65B91C260E8E00F48F98 /* DeviceManagementView.swift */,
+				8DEFEB941C2AFFE5003CCE8A /* HighlightImageView.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC319891C138B4D00B4E6E0 /* SettingsViewController.swift in Sources */,
+				8DEFEB951C2AFFE5003CCE8A /* HighlightImageView.swift in Sources */,
 				8DA3AAD11C1D211C0065B6D9 /* GlowAPIManager.swift in Sources */,
 				8D714B071C262618008E105F /* NewRelationshipCollectionViewCell.swift in Sources */,
 				8D5AA5831C1526CD00FBB1A2 /* HeartViewController.swift in Sources */,

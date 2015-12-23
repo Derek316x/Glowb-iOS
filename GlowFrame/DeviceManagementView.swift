@@ -21,15 +21,12 @@ extension UIImage {
 
 class DeviceManagementView: UIView {
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var deviceInformationView: UIView!
     @IBOutlet weak var deviceNameLabel: UILabel!
     @IBOutlet weak var deviceStatusImageView: UIImageView!
     @IBOutlet weak var deviceProductTypeLabel: UILabel!
     
-    private var loadDeviceInfoTask: Request?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
     
     func displayDevice(device: Device) {
         deviceNameLabel.text = device.name
@@ -39,6 +36,9 @@ class DeviceManagementView: UIView {
         if let connection = device.connected {
             deviceStatusImageView.image = UIImage.imageForConnectionState(connection)
         }
+        
+        loadingIndicator.stopAnimating()
+        deviceInformationView.hidden = false
     }
     
     class func viewFromNib() -> DeviceManagementView? {
