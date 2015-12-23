@@ -15,8 +15,11 @@ class ParticleAPIManager {
         return ["access_token" : accessToken]
     }
     
-    private class var accessToken: String {
-        return "a946e1b8198e4304ce32abed2e6e96de553d2081"
+    private class var accessToken: String! {
+        let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist")!
+        let plist = NSDictionary(contentsOfFile: path)!
+        let token = plist["ParticleAccessToken"] as! String
+        return token
     }
     
     class func fetchDeviceInfo(device: Device, completion: (info: [String: AnyObject]) -> Void) -> Request {

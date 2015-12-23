@@ -170,6 +170,9 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
+        
+        // visual effects
+        
         let alpha = (scrollView.contentOffset.y + VISIBLE_IMAGE_PORTION) / frame.size.height
         overlayView.alpha = (1 - alpha) * 0.8
         
