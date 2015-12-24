@@ -10,44 +10,68 @@ import UIKit
 
 class ParticleSettingsTableViewController: UITableViewController {
     
+    let loggedOutDataSource = ParticleLoggedOutTableViewDataSource()
+    let loggedInDataSource = ParticleLoggedInTableViewDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let ip = tableView.indexPathForSelectedRow {
+            tableView.deselectRowAtIndexPath(ip, animated: true)
+        }
+    }
+    
     private func setup() {
         if User.currentUser.isLoggedInToParticle {
             navigationItem.title = User.currentUser.loggedInParticleUsername
+        } else {
+            navigationItem.title = "Particle"
         }
+    }
+    
+    private func setupTableViewDataSource() {
+        if User.currentUser.isLoggedInToParticle {
+            tableView.dataSource = loggedInDataSource
+        } else {
+            tableView.dataSource = loggedOutDataSource
+        }
+        
+        tableView.reloadData()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if !User.currentUser.isLoggedInToParticle {
+        if User.currentUser.isLoggedInToParticle {
+            return 1
+        } else {
             return 2
         }
-        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !User.currentUser.isLoggedInToParticle {
-            switch section {
-            case 0:
-                return 2
-            case 1:
-                return 1
-            default:
-                return 0
-            }
-        } else {
+        if User.currentUser.isLoggedInToParticle {
             return 1
+        } else {
+            switch section {
+            case 0: return 2
+            case 1: return 1
+            default: return 0
+            }
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if !User.currentUser.isLoggedInToParticle {
-            
+        if User.currentUser.isLoggedInToParticle {
+            let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
+            cell.textLabel?.text = "Log Out"
+            cell.textLabel?.textColor = UIColor.redColor()
+            return cell
+        } else {
             switch indexPath.section {
             case 0:
                     guard let cell = tableView.dequeueReusableCellWithIdentifier(LabelFieldTableViewCell.CellIdentifier, forIndexPath: indexPath) as? LabelFieldTableViewCell else {
@@ -73,42 +97,46 @@ class ParticleSettingsTableViewController: UITableViewController {
             default:
                 return UITableViewCell()
             }
-            
-        } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
-            cell.textLabel?.text = "Log Out"
-            return cell
         }
     }
-    
-    // MARK: - Table view delegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         if User.currentUser.isLoggedInToParticle {
-            if (indexPath.section == 0 && indexPath.row == 0) {
-                User.currentUser.particleAccount.logout()
-            }
+            logOutParticleUser()
         } else {
-            if indexPath.section == 1 && indexPath.row == 0 {
-                loginParticleUser()
-            }
+            guard indexPath.section != 0 else { return }
+            logInParticleUser()
         }
+        
     }
     
-    private func loginParticleUser() {
+    private func logInParticleUser() {
         let emailIP = NSIndexPath(forRow: 0, inSection: 0)
         let passwordIP = NSIndexPath(forRow: 1, inSection: 0)
         
         guard let emailCell = tableView.cellForRowAtIndexPath(emailIP) as? LabelFieldTableViewCell,
             passwordCell = tableView.cellForRowAtIndexPath(passwordIP) as? LabelFieldTableViewCell else {
-                    return
-                }
+                return
+        }
         
-        User.currentUser.particleAccount.loginWithUser(emailCell.textField.text, password: passwordCell.textField.text, completion: { (error: NSError!) -> Void in
-            if error != nil {
-                print(error.userInfo)
-            }
-        })
+        User.currentUser.particleAccount.loginWithUser(emailCell.textField.text, password: passwordCell.textField.text) { (error: NSError!) -> Void in
+            
+            self.tableView.reloadData()
+            let set = NSMutableIndexSet()
+            set.addIndex(0)
+            self.tableView.reloadSections(set, withRowAnimation: .Automatic)
+            
+            self.navigationItem.title = User.currentUser.loggedInParticleUsername
+        }
+    }
+    
+    private func logOutParticleUser() {
+        User.currentUser.particleAccount.logout()
+        tableView.reloadData()
+        let set = NSMutableIndexSet()
+        set.addIndex(0)
+        set.addIndex(1)
+        navigationItem.title = "Particle"
+        tableView.reloadSections(set, withRowAnimation: .Automatic)
     }
 }
