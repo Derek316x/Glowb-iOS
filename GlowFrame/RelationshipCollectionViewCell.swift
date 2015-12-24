@@ -20,6 +20,7 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         didSet {
             imageView.image = relationship!.image
             imageBackground.image = relationship!.image
+            deviceDetailView.displayDevice(relationship!.device)
         }
     }
     

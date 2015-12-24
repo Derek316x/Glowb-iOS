@@ -29,6 +29,9 @@ class DeviceManagementView: UIView {
     
     
     func displayDevice(device: Device) {
+        
+        guard device.name != nil else { return }
+        
         deviceNameLabel.text = device.name
         if let type = device.type {
             deviceProductTypeLabel.text = "(\(type))"

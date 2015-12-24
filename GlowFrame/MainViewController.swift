@@ -19,7 +19,8 @@ class MainViewController: UIViewController,
     var relationships: [Relationship] = {
         return [
           Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
-          Relationship(image: UIImage(named: "hannah")!, device: Device(deviceID: "300035000547343232363230"))
+          Relationship(image: UIImage(named: "hannah")!, device: Device(deviceID: "300035000547343232363230")),
+          Relationship(image: UIImage(named: "boys")!, device: Device(deviceID: "300035000547343232363230"))
         ]
     }()
     
@@ -43,6 +44,7 @@ class MainViewController: UIViewController,
     
     private func setupCollectionView() {
         collectionView.delegate = self
+        collectionView.pagingEnabled = true
         collectionView.dataSource = self
         collectionView.registerNib(NewRelationshipCollectionViewCell.Nib, forCellWithReuseIdentifier: NewRelationshipCollectionViewCell.CellIdentifier)
         collectionView.registerNib(RelationshipCollectionViewCell.Nib, forCellWithReuseIdentifier: RelationshipCollectionViewCell.CellIdentifier)
@@ -90,20 +92,25 @@ class MainViewController: UIViewController,
         }
     }
     
-    // MARK: - 
+    
+    // MARK: - Collection view flow layout
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: view.frame.size.width, height: view.frame.size.height)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    
+    // MARK: - Declarative
     
     private func displayNewRelationship() {
         let viewController = NewRelationshipViewController(nibName: NewRelationshipViewController.NibName, bundle: nil)
         let navigationController = UINavigationController(rootViewController: viewController)
         
         presentViewController(navigationController, animated: true, completion: nil)
-    }
-    
-    
-    // MARK: - Collection view flow layout
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: view.frame.size.width, height: view.frame.size.height)
     }
     
     
