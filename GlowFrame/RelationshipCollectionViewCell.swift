@@ -175,6 +175,10 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
             self._updatingDevice = false
             self.updateTask = nil
         })
+        
+        if updateTask == nil {
+            _updatingDevice = false
+        }
     }
     
     
