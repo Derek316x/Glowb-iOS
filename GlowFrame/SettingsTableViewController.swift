@@ -8,14 +8,8 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsTableViewController: UITableViewController {
 
-    @IBAction func glowBlueButtonTapped(sender: AnyObject) {
-    }
-
-    @IBAction func glowPurpleButtonTapped(sender: AnyObject) {
-    }
-    
     @IBAction func doneButtonTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
