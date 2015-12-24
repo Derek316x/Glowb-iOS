@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Alamofire
 
 class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate {
     
     private let VISIBLE_IMAGE_PORTION: CGFloat = 60.0
     private let CORNER_RADIUS: CGFloat = 20.0
     private var _updatingDevice = false
+    var updateTask: Request?
     
     var firstLoad = true
     
@@ -148,10 +150,15 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     }
     
     
-    // MARK: - Imparative
+    // MARK: - Imperative
     
     func eagerLoad() {
         updateDeviceInfo()
+    }
+    
+    func cancelAllRequests() {
+        updateTask?.cancel()
+        _updatingDevice = false
     }
     
     func resetScroll() {
@@ -159,10 +166,14 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     }
     
     private func updateDeviceInfo(force: Bool = false) {
-        relationship?.device.updateInfo(force, completion: { (device: Device) -> Void in
-            self.deviceDetailView.displayDevice(device)
-            self.relationship!.device = device
+        
+        guard !_updatingDevice else { return }
+        _updatingDevice = true
+        
+        updateTask = relationship?.device.updateInfo(force, completion: { () -> Void in
+            self.deviceDetailView.displayDevice(self.relationship!.device)
             self._updatingDevice = false
+            self.updateTask = nil
         })
     }
     
@@ -171,19 +182,12 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
-        
         // visual effects
         
         let alpha = (scrollView.contentOffset.y + VISIBLE_IMAGE_PORTION) / frame.size.height
         overlayView.alpha = (1 - alpha) * 0.8
         
         background.alpha = 1 - alpha
-        
-        
-        // pull to refresh
-        
-        guard !_updatingDevice else { return }
-        _updatingDevice = true
         
         updateDeviceInfo()
     }

@@ -44,7 +44,6 @@ class MainViewController: UIViewController,
     
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.pagingEnabled = true
         collectionView.dataSource = self
         collectionView.registerNib(NewRelationshipCollectionViewCell.Nib, forCellWithReuseIdentifier: NewRelationshipCollectionViewCell.CellIdentifier)
         collectionView.registerNib(RelationshipCollectionViewCell.Nib, forCellWithReuseIdentifier: RelationshipCollectionViewCell.CellIdentifier)
@@ -92,15 +91,17 @@ class MainViewController: UIViewController,
         }
     }
     
+    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        if let cell = cell as? RelationshipCollectionViewCell {
+            cell.cancelAllRequests()
+        }
+    }
+    
     
     // MARK: - Collection view flow layout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: view.frame.size.width, height: view.frame.size.height)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0.0
     }
     
     

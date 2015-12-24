@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D27B7211C2BB44B0023C1A2 /* ParticleDeviceRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27B7201C2BB44B0023C1A2 /* ParticleDeviceRepresentation.swift */; };
+		8D27B7231C2BC10F0023C1A2 /* DeviceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27B7221C2BC10F0023C1A2 /* DeviceSettings.swift */; };
 		8D37D2E11C15EB5B00B8E148 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */; };
 		8D37D2E31C15EC0700B8E148 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37D2E21C15EC0700B8E148 /* Device.swift */; };
 		8D5AA57A1C151B3C00FBB1A2 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */; };
@@ -37,6 +39,8 @@
 /* Begin PBXFileReference section */
 		3E29C4E24591EF95097E943E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4AFC7696F0DDAC677F92D606 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D27B7201C2BB44B0023C1A2 /* ParticleDeviceRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleDeviceRepresentation.swift; sourceTree = "<group>"; };
+		8D27B7221C2BC10F0023C1A2 /* DeviceSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSettings.swift; sourceTree = "<group>"; };
 		8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8D37D2E21C15EC0700B8E148 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
@@ -87,6 +91,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D27B71F1C2BB4370023C1A2 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				8D37D2E21C15EC0700B8E148 /* Device.swift */,
+				8D27B7201C2BB44B0023C1A2 /* ParticleDeviceRepresentation.swift */,
+				8D27B7221C2BC10F0023C1A2 /* DeviceSettings.swift */,
+			);
+			name = Device;
+			sourceTree = "<group>";
+		};
 		8DC3197A1C138B4D00B4E6E0 = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +144,7 @@
 				8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */,
 				8DA3AAD01C1D211C0065B6D9 /* GlowAPIManager.swift */,
 				8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */,
-				8D37D2E21C15EC0700B8E148 /* Device.swift */,
+				8D27B71F1C2BB4370023C1A2 /* Device */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -290,9 +304,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D27B7231C2BC10F0023C1A2 /* DeviceSettings.swift in Sources */,
 				8DC319891C138B4D00B4E6E0 /* SettingsViewController.swift in Sources */,
 				8DEFEB951C2AFFE5003CCE8A /* HighlightImageView.swift in Sources */,
 				8DA3AAD11C1D211C0065B6D9 /* GlowAPIManager.swift in Sources */,
+				8D27B7211C2BB44B0023C1A2 /* ParticleDeviceRepresentation.swift in Sources */,
 				8D714B071C262618008E105F /* NewRelationshipCollectionViewCell.swift in Sources */,
 				8D5AA5831C1526CD00FBB1A2 /* HeartViewController.swift in Sources */,
 				8DC319871C138B4D00B4E6E0 /* AppDelegate.swift in Sources */,

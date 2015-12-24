@@ -22,9 +22,9 @@ class ParticleAPIManager {
         return token
     }
     
-    class func fetchDeviceInfo(device: Device, completion: (info: [String: AnyObject]) -> Void) -> Request {
+    class func fetchDeviceInfo(deviceID: String, completion: (info: [String: AnyObject]) -> Void) -> Request {
         
-        let url = ParticleEndpoints.DeviceInfo(device).URL()
+        let url = ParticleEndpoints.DeviceInfo(deviceID).URL()
         
         return Alamofire.request(.GET, url, parameters: defaultParams, encoding: .URL, headers: nil).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
             
@@ -36,9 +36,9 @@ class ParticleAPIManager {
         }
     }
     
-    class func callFunction(name: String, forDevice device: Device, withArgs args: String, completion: (success: Bool) -> Void) -> Request {
+    class func callFunction(name: String, forDevice deviceID: String, withArgs args: String, completion: (success: Bool) -> Void) -> Request {
         
-        let url = ParticleEndpoints.CallFunction(device, name).URL()
+        let url = ParticleEndpoints.CallFunction(deviceID, name).URL()
         
         var params = defaultParams
         params["args"] = args
@@ -49,17 +49,20 @@ class ParticleAPIManager {
     }
 }
 
+typealias DeviceID = String
+typealias FunctionName = String
+
 enum ParticleEndpoints {
     
-    case DeviceInfo(Device)
-    case CallFunction(Device, String)
+    case DeviceInfo(DeviceID)
+    case CallFunction(DeviceID, FunctionName)
     
     func URL() -> NSURL {
         switch self {
-        case .DeviceInfo(let device):
-            return NSURL(string: "\(devicesURL())/\(device.ID)")!
-        case .CallFunction(let device, let function):
-            return NSURL(string: "\(devicesURL())/\(device.ID)/\(function)")!
+        case .DeviceInfo(let id):
+            return NSURL(string: "\(devicesURL())/\(id)")!
+        case .CallFunction(let id, let function):
+            return NSURL(string: "\(devicesURL())/\(id)/\(function)")!
         }
     }
     
