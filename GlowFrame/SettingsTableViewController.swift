@@ -7,11 +7,31 @@
 //
 
 import UIKit
+import Spark_SDK
 
 class SettingsTableViewController: UITableViewController {
 
+    @IBOutlet weak var logInOrLoggedInLabel: UILabel!
+    
     @IBAction func doneButtonTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if User.currentUser.isLoggedInToParticle {
+            logInOrLoggedInLabel.text = User.currentUser.loggedInParticleUsername
+        } else {
+            logInOrLoggedInLabel.text = "Log In"
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section == 0 && indexPath.row == 1 {
+            
+        }
     }
 }
 

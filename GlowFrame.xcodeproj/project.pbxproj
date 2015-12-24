@@ -17,6 +17,8 @@
 		8D5C65BA1C260E8E00F48F98 /* DeviceManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C65B91C260E8E00F48F98 /* DeviceManagementView.swift */; };
 		8D5C65BC1C260F1B00F48F98 /* DeviceManagementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5C65BB1C260F1B00F48F98 /* DeviceManagementView.xib */; };
 		8D710E911C2C7E8A0076DEBF /* ParticleSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D710E901C2C7E8A0076DEBF /* ParticleSettingsTableViewController.swift */; };
+		8D710E931C2C82190076DEBF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D710E921C2C82190076DEBF /* User.swift */; };
+		8D710E951C2C847F0076DEBF /* LabelFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D710E941C2C847F0076DEBF /* LabelFieldTableViewCell.swift */; };
 		8D714B051C262609008E105F /* NewRelationshipCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D714B041C262609008E105F /* NewRelationshipCollectionViewCell.xib */; };
 		8D714B071C262618008E105F /* NewRelationshipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D714B061C262618008E105F /* NewRelationshipCollectionViewCell.swift */; };
 		8D714B091C2668EE008E105F /* RelationshipCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D714B081C2668EE008E105F /* RelationshipCollectionViewCell.xib */; };
@@ -50,6 +52,8 @@
 		8D5C65B91C260E8E00F48F98 /* DeviceManagementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManagementView.swift; sourceTree = "<group>"; };
 		8D5C65BB1C260F1B00F48F98 /* DeviceManagementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceManagementView.xib; sourceTree = "<group>"; };
 		8D710E901C2C7E8A0076DEBF /* ParticleSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleSettingsTableViewController.swift; sourceTree = "<group>"; };
+		8D710E921C2C82190076DEBF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8D710E941C2C847F0076DEBF /* LabelFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelFieldTableViewCell.swift; sourceTree = "<group>"; };
 		8D714B041C262609008E105F /* NewRelationshipCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRelationshipCollectionViewCell.xib; sourceTree = "<group>"; };
 		8D714B061C262618008E105F /* NewRelationshipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRelationshipCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D714B081C2668EE008E105F /* RelationshipCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelationshipCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				8D710E901C2C7E8A0076DEBF /* ParticleSettingsTableViewController.swift */,
 				8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */,
 				8D5AA5811C1526CD00FBB1A2 /* HeartViewController.swift */,
+				8D710E941C2C847F0076DEBF /* LabelFieldTableViewCell.swift */,
 				8DD708311C15F6A0006570B4 /* RelationshipView.swift */,
 				8D873E9D1C27C37400938211 /* NewRelationshipViewController.swift */,
 				8D873E9E1C27C37400938211 /* NewRelationshipViewController.xib */,
@@ -147,6 +152,7 @@
 				8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */,
 				8DA3AAD01C1D211C0065B6D9 /* GlowAPIManager.swift */,
 				8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */,
+				8D710E921C2C82190076DEBF /* User.swift */,
 				8D27B71F1C2BB4370023C1A2 /* Device */,
 			);
 			name = Model;
@@ -321,6 +327,8 @@
 				8D9CC9BF1C154B1C000EC9FB /* ParticleAPIManager.swift in Sources */,
 				8DD708361C15FF06006570B4 /* RelationshipCollectionViewCell.swift in Sources */,
 				8D37D2E11C15EB5B00B8E148 /* MainViewController.swift in Sources */,
+				8D710E931C2C82190076DEBF /* User.swift in Sources */,
+				8D710E951C2C847F0076DEBF /* LabelFieldTableViewCell.swift in Sources */,
 				8D873E9F1C27C37400938211 /* NewRelationshipViewController.swift in Sources */,
 				8DD708321C15F6A0006570B4 /* RelationshipView.swift in Sources */,
 				8D37D2E31C15EC0700B8E148 /* Device.swift in Sources */,
