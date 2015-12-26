@@ -25,6 +25,7 @@
 		8D873EA01C27C37400938211 /* NewRelationshipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D873E9E1C27C37400938211 /* NewRelationshipViewController.xib */; };
 		8D93DF9B1C2E649E0071C3E1 /* ParticleDeviceSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93DF9A1C2E649E0071C3E1 /* ParticleDeviceSettingsTableViewCell.swift */; };
 		8D93DF9D1C2E64FC0071C3E1 /* UIImageView+Particle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93DF9C1C2E64FC0071C3E1 /* UIImageView+Particle.swift */; };
+		8D93DFA01C2E67BE0071C3E1 /* DeviceDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93DF9F1C2E67BE0071C3E1 /* DeviceDetailTableViewController.swift */; };
 		8D9CC9BF1C154B1C000EC9FB /* ParticleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */; };
 		8DA21F601C2B159F00E27DA3 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DA21F5F1C2B159F00E27DA3 /* Keys.plist */; };
 		8DC319871C138B4D00B4E6E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC319861C138B4D00B4E6E0 /* AppDelegate.swift */; };
@@ -60,6 +61,7 @@
 		8D873E9E1C27C37400938211 /* NewRelationshipViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRelationshipViewController.xib; sourceTree = "<group>"; };
 		8D93DF9A1C2E649E0071C3E1 /* ParticleDeviceSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleDeviceSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		8D93DF9C1C2E64FC0071C3E1 /* UIImageView+Particle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Particle.swift"; sourceTree = "<group>"; };
+		8D93DF9F1C2E67BE0071C3E1 /* DeviceDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailTableViewController.swift; sourceTree = "<group>"; };
 		8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleAPIManager.swift; sourceTree = "<group>"; };
 		8DA21F5F1C2B159F00E27DA3 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		8DC319831C138B4D00B4E6E0 /* GlowFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlowFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,10 +152,9 @@
 				8D710E961C2C8E310076DEBF /* Settings */,
 				8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */,
 				8D5AA5811C1526CD00FBB1A2 /* HeartViewController.swift */,
-				8D710E941C2C847F0076DEBF /* LabelFieldTableViewCell.swift */,
-				8DD708311C15F6A0006570B4 /* RelationshipView.swift */,
 				8D873E9D1C27C37400938211 /* NewRelationshipViewController.swift */,
 				8D873E9E1C27C37400938211 /* NewRelationshipViewController.xib */,
+				8D93DF9F1C2E67BE0071C3E1 /* DeviceDetailTableViewController.swift */,
 				8D93DF9E1C2E65220071C3E1 /* Extensions */,
 				8DD708341C15FB9D006570B4 /* UI */,
 				8DC3198D1C138B4D00B4E6E0 /* Assets.xcassets */,
@@ -177,6 +178,8 @@
 		8DD708341C15FB9D006570B4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8DD708311C15F6A0006570B4 /* RelationshipView.swift */,
+				8D710E941C2C847F0076DEBF /* LabelFieldTableViewCell.swift */,
 				8DD7082F1C15F693006570B4 /* RelationshipView.xib */,
 				8D5AA5821C1526CD00FBB1A2 /* HeartViewController.xib */,
 				8DC3198F1C138B4D00B4E6E0 /* LaunchScreen.storyboard */,
@@ -343,6 +346,7 @@
 				8DD708361C15FF06006570B4 /* RelationshipCollectionViewCell.swift in Sources */,
 				8D37D2E11C15EB5B00B8E148 /* MainViewController.swift in Sources */,
 				8D710E931C2C82190076DEBF /* User.swift in Sources */,
+				8D93DFA01C2E67BE0071C3E1 /* DeviceDetailTableViewController.swift in Sources */,
 				8D710E951C2C847F0076DEBF /* LabelFieldTableViewCell.swift in Sources */,
 				8D93DF9B1C2E649E0071C3E1 /* ParticleDeviceSettingsTableViewCell.swift in Sources */,
 				8D873E9F1C27C37400938211 /* NewRelationshipViewController.swift in Sources */,
