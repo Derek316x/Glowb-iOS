@@ -14,7 +14,7 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     private let VISIBLE_IMAGE_PORTION: CGFloat = 60.0
     private let CORNER_RADIUS: CGFloat = 20.0
     private var _updatingDevice = false
-    var updateTask: Request?
+    var updateTask: NSURLSessionTask?
     
     var firstLoad = true
     

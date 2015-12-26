@@ -12,21 +12,25 @@ class NewRelationshipCollectionViewCell: UICollectionViewCell {
     
     var newItemButtonTappedHandler: (() -> Void)?
     
-    @IBAction func newItemButtonTapped(sender: AnyObject) {
+    @IBAction func newItemButtonTapped(sender: AnyObject)
+    {
         if let handler = newItemButtonTappedHandler {
             handler()
         }
     }
     
-    class var CellIdentifier: String {
+    class var CellIdentifier: String
+    {
         return "NewRelationshipCellIdentifier"
     }
     
-    class var NibName: String {
+    class var NibName: String
+    {
         return "NewRelationshipCollectionViewCell"
     }
     
-    class var Nib: UINib {
+    class var Nib: UINib
+    {
         return UINib(nibName: NibName, bundle: nil)
     }
 }

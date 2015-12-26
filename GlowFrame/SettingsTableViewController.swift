@@ -25,6 +25,10 @@ class SettingsTableViewController: UITableViewController {
         } else {
             logInOrLoggedInLabel.text = "Log In"
         }
+        
+        if let ip = tableView.indexPathForSelectedRow {
+            tableView.deselectRowAtIndexPath(ip, animated: true)
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

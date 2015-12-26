@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import Spark_SDK
 
 class GlowAPIManager {
-    class func glowForRelationship(relationship: Relationship) {
+    class func glowForRelationship(relationship: Relationship)
+    {
         ParticleAPIManager.callFunction("glow", forDevice: relationship.device.deviceID, withArgs: "purple") { (success) -> Void in
             print(success)
         }

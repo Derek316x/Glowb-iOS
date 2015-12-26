@@ -20,4 +20,39 @@ class User {
         return particleAccount.loggedInUsername
     }
     
+    var devices = Set<SparkDevice>()
+    
+    func getDevice(deviceID: String, force: Bool = false, completion: (aDevice: SparkDevice!, aError: NSError!) -> Void) -> NSURLSessionDataTask?
+    {
+        if !force {
+            // Short circuit if we already have the device
+            let equal = devices.filter { $0.id == deviceID }
+            guard equal.count == 0 else {
+                completion(aDevice: equal.first!, aError: nil)
+                return nil
+            }
+        }
+        
+        return particleAccount.getDevice(deviceID) { (device: SparkDevice!, error: NSError!) -> Void in
+            if !force && device != nil {
+                let equal = self.devices.filter { $0.id == deviceID }
+                if equal.count == 0 {
+                    self.devices.insert(device)
+                }
+            }
+            completion(aDevice: device, aError: error)
+        }
+    }
+    
+    func getDevices(completion: ([SparkDevice]!, NSError!) -> Void) -> NSURLSessionDataTask {
+        return particleAccount.getDevices({ (response: [AnyObject]!, error: NSError!) -> Void in
+            guard let devices = response as? [SparkDevice] else {
+                completion(nil, error)
+                return
+            }
+            self.devices = Set(devices)
+            completion(devices, error)
+        })
+    }
+    
 }

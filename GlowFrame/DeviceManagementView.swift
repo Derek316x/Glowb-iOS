@@ -10,7 +10,8 @@ import UIKit
 import Alamofire
 
 extension UIImage {
-    class func imageForConnectionState(connected: Bool) -> UIImage {
+    class func imageForConnectionState(connected: Bool) -> UIImage
+    {
         if (connected) {
             return UIImage(named: "connected")!
         } else {
@@ -27,46 +28,49 @@ class DeviceManagementView: UIView {
     @IBOutlet weak var deviceStatusImageView: UIImageView!
     @IBOutlet weak var deviceProductTypeLabel: UILabel!
     
-    func displayDevice(device: Device) {
-        
-        guard let _ = device.particleRepresentation else {
+    func displayDevice(device: Device)
+    {
+        guard let _ = device.particleDevice else {
             showLoadingDevice()
             return
         }
-        
         showLoadedDevice(device)
     }
     
     // MARK: - Imperative
     
-    private func showLoadedDevice(device: Device) {
-        deviceNameLabel.text = device.particleRepresentation!.name
-        deviceProductTypeLabel.text = "(\(device.particleRepresentation!.type))"
-        deviceStatusImageView.image = UIImage.imageForConnectionState(device.particleRepresentation!.connected)
+    private func showLoadedDevice(device: Device)
+    {
+        deviceNameLabel.text = device.particleDevice!.name
+        deviceProductTypeLabel.text = "(\(device.particleDevice!.type))"
+        deviceStatusImageView.image = UIImage.imageForConnectionState(device.particleDevice!.connected)
         
         loadingIndicator.stopAnimating()
         deviceInformationView.hidden = false
     }
     
-    private func showLoadingDevice() {
+    private func showLoadingDevice()
+    {
         deviceNameLabel.text = ""
         deviceProductTypeLabel.text = ""
         deviceStatusImageView.image = nil
+        
         loadingIndicator.startAnimating()
         deviceInformationView.hidden = true
     }
     
     // MARK: - Declarative
     
-    class func viewFromNib() -> DeviceManagementView? {
+    class func viewFromNib() -> DeviceManagementView?
+    {
         guard let view = NSBundle.mainBundle().loadNibNamed(self.nibName(), owner: self, options: nil)[0] as? DeviceManagementView else {
             return nil
         }
-        
         return view
     }
 
-    class func nibName() -> String {
+    class func nibName() -> String
+    {
         return "DeviceManagementView"
     }
 }

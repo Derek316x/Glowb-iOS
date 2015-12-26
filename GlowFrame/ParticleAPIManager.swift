@@ -22,11 +22,11 @@ class ParticleAPIManager {
         return token
     }
     
-    class func fetchDeviceInfo(deviceID: String, completion: (info: [String: AnyObject]) -> Void) -> Request {
-        
+    class func fetchDeviceInfo(deviceID: String, completion: (info: [String: AnyObject]) -> Void) -> NSURLSessionTask
+    {
         let url = ParticleEndpoints.DeviceInfo(deviceID).URL()
         
-        return Alamofire.request(.GET, url, parameters: defaultParams, encoding: .URL, headers: nil).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
+        let request = Alamofire.request(.GET, url, parameters: defaultParams, encoding: .URL, headers: nil).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
             
             if response.result.isSuccess {
                 if let value = response.result.value as? [String: AnyObject] {
@@ -34,10 +34,12 @@ class ParticleAPIManager {
                 }
             }
         }
+        
+        return request.task
     }
     
-    class func callFunction(name: String, forDevice deviceID: String, withArgs args: String, completion: (success: Bool) -> Void) -> Request {
-        
+    class func callFunction(name: String, forDevice deviceID: String, withArgs args: String, completion: (success: Bool) -> Void) -> Request
+    {
         let url = ParticleEndpoints.CallFunction(deviceID, name).URL()
         
         var params = defaultParams

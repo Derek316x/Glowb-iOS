@@ -8,28 +8,30 @@
 
 import Foundation
 import Alamofire
+import Spark_SDK
 
 class Device {
     
     let deviceID: String
-    var particleRepresentation: ParticleDevice?
+    var particleDevice:  SparkDevice?
     var deviceSettings: DeviceSettings?
     private var updatedAt: NSDate?
+    
     var connected: Bool {
-        guard let pr = particleRepresentation else { return false }
+        guard let pr = particleDevice else { return false }
         return pr.connected
     }
     
-    
-    init(deviceID: String) {
+    init(deviceID: String)
+    {
         self.deviceID = deviceID
-        particleRepresentation = nil
+        particleDevice = nil
         updatedAt = nil
     }
 
-    func updateInfo(force: Bool = false, completion: () -> Void) -> Request? {
-        
-        // don't reload unless it's been at least 2 minutes. arbitrary
+    func updateInfo(force: Bool = false, completion: () -> Void) -> NSURLSessionTask?
+    {
+        // Don't reload unless it's been at least 2 minutes. Arbitrary.
         if !force {
             if let updatedAt = updatedAt {
                 guard NSDate().timeIntervalSinceDate(updatedAt) > 60 * 2 else {
@@ -38,15 +40,17 @@ class Device {
             }
         }
         
-        return updateParticleRepresentation(completion)
+        return updateParticleRepresentation(force, completion)
     }
     
-    private func updateParticleRepresentation(completion: () -> Void) -> Request? {
-        
-        return ParticleDevice.fetch(deviceID, completion: { (particleDevice: ParticleDevice?) -> Void in
-            self.updatedAt = NSDate()
-            self.particleRepresentation = particleDevice
-            completion()
+    private func updateParticleRepresentation(force: Bool = false, _ completion: () -> Void) -> NSURLSessionTask?
+    {
+        return User.currentUser.getDevice(deviceID, force: force, completion: { (device: SparkDevice!, error: NSError!) -> Void in
+            if error == nil {
+                self.updatedAt = NSDate()
+                self.particleDevice = device
+                completion()
+            }
         })
     }
 }

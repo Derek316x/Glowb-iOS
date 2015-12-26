@@ -14,7 +14,8 @@ class Relationship {
     let image: UIImage
     var device: Device
     
-    init(image: UIImage, device: Device) {
+    init(image: UIImage, device: Device)
+    {
         self.image = image
         self.device = device
     }
