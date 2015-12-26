@@ -55,8 +55,8 @@ class Device {
             if error == nil {
                 self.updatedAt = NSDate()
                 self.particleDevice = device
-                completion()
             }
+            completion()
         })
     }
 }
