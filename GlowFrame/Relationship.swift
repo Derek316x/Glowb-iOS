@@ -13,11 +13,13 @@ class Relationship {
     
     let image: UIImage
     let device: Device
+    let nickname: String
     
-    init(image: UIImage, device: Device)
+    init(image: UIImage, device: Device, nickname: String)
     {
         self.image = image
         self.device = device
+        self.nickname = nickname
     }
     
     func activate() {

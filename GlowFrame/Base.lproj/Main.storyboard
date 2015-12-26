@@ -106,9 +106,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="GZ8-aN-BFM" kind="show" id="KJZ-lp-qLK"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -139,7 +136,7 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LabelTextFieldCellIdentifier" id="HDZ-OR-jN9" customClass="LabelFieldTableViewCell" customModule="GlowFrame" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HDZ-OR-jN9" id="Z6e-0e-aQL">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -177,7 +174,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BasicCellIdentifier" textLabel="Udw-Ou-j7d" style="IBUITableViewCellStyleDefault" id="Nn6-AY-MEV" customClass="LabelFieldTableViewCell" customModule="GlowFrame" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nn6-AY-MEV" id="i59-QD-tCT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -194,7 +191,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DeviceCellIdentifier" id="I6k-uy-O3h" customClass="ParticleDeviceSettingsTableViewCell" customModule="GlowFrame" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="201.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="137.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I6k-uy-O3h" id="PQA-Xy-odg">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -256,7 +253,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="f4W-Zn-SOz">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f4W-Zn-SOz" id="YPz-v3-Bct">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>

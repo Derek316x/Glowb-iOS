@@ -53,7 +53,7 @@ class SettingsTableViewController: UITableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
-            cell.textLabel?.text = User.currentUser.relationships[indexPath.row].device.particleDevice?.name
+            cell.textLabel?.text = User.currentUser.relationships[indexPath.row].nickname
             return cell
         default: return UITableViewCell()
         }
@@ -61,8 +61,10 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        if indexPath.section == 0 && indexPath.row == 1 {
-            
+        if indexPath.section == 0 && indexPath.row == 0 {
+            if let viewController = storyboard?.instantiateViewControllerWithIdentifier(ParticleSettingsTableViewController.StoryboardIdentifier) as? ParticleSettingsTableViewController {
+                navigationController?.pushViewController(viewController, animated: true)
+            }
         }
     }
     
