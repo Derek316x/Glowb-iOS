@@ -16,6 +16,11 @@ class SettingsTableViewController: UITableViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    override func viewDidLoad() {
+        User.currentUser.getDevices(nil)
+        super.viewDidLoad()
+    }
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -23,6 +28,8 @@ class SettingsTableViewController: UITableViewController {
         if let ip = tableView.indexPathForSelectedRow {
             tableView.deselectRowAtIndexPath(ip, animated: true)
         }
+        
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source

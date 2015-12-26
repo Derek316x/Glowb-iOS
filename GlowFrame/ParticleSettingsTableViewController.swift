@@ -35,19 +35,19 @@ class ParticleSettingsTableViewController: UITableViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool)
-    {
-        if User.currentUser.isLoggedInToParticle {
-            User.currentUser.getDevices({ (devices: [SparkDevice]!, error: NSError!) -> Void in
-                self.userDevices = User.currentUser.devices.sort { $0.name < $1.name }
-                self.tableView.reloadData()
-                let set = NSMutableIndexSet(index: 0)
-                self.tableView.reloadSections(set, withRowAnimation: .Automatic)
-            })
-        }
-        
-        super.viewDidAppear(animated)
-    }
+//    override func viewDidAppear(animated: Bool)
+//    {
+//        if User.currentUser.isLoggedInToParticle {
+//            User.currentUser.getDevices({ (devices: [SparkDevice]!, error: NSError!) -> Void in
+//                self.userDevices = User.currentUser.devices.sort { $0.name < $1.name }
+//                self.tableView.reloadData()
+//                let set = NSMutableIndexSet(index: 0)
+//                self.tableView.reloadSections(set, withRowAnimation: .Automatic)
+//            })
+//        }
+//        
+//        super.viewDidAppear(animated)
+//    }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)

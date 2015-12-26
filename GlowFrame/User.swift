@@ -52,14 +52,14 @@ class User {
         }
     }
     
-    func getDevices(completion: ([SparkDevice]!, NSError!) -> Void) -> NSURLSessionDataTask {
+    func getDevices(completion: (([SparkDevice]!, NSError!) -> Void)?) -> NSURLSessionDataTask {
         return particleAccount.getDevices({ (response: [AnyObject]!, error: NSError!) -> Void in
             guard let devices = response as? [SparkDevice] else {
-                completion(nil, error)
+                completion?(nil, error)
                 return
             }
             self.devices = Set(devices)
-            completion(devices, error)
+            completion?(devices, error)
         })
     }
     
