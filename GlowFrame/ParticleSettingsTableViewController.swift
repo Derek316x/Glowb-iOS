@@ -96,10 +96,13 @@ class ParticleSettingsTableViewController: UITableViewController {
             switch indexPath.section {
             case 0:
                 let device = userDevices[indexPath.row]
-                let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
-                cell.textLabel?.text = device.name
-                cell.textLabel?.textColor = UIColor.blackColor()
-                return cell
+                if let cell = tableView.dequeueReusableCellWithIdentifier("DeviceCellIdentifier", forIndexPath: indexPath) as? ParticleDeviceSettingsTableViewCell {
+                    cell.nameLabel.text = device.name
+                    cell.connectedImageView.image = UIImage.imageForConnectionState(device.connected)
+                    return cell
+                } else {
+                    return UITableViewCell()
+                }
             case 1:
                 let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
                 cell.textLabel?.text = "Log Out"

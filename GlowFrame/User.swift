@@ -20,6 +20,14 @@ class User {
         return particleAccount.loggedInUsername
     }
     
+    var relationships: [Relationship] = {
+        return [
+          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
+          Relationship(image: UIImage(named: "hannah")!, device: Device(deviceID: "300035000547343232363230")),
+          Relationship(image: UIImage(named: "boys")!, device: Device(deviceID: "300035000547343232363230"))
+        ]
+    }()
+    
     var devices = Set<SparkDevice>()
     
     func getDevice(deviceID: String, force: Bool = false, completion: (aDevice: SparkDevice!, aError: NSError!) -> Void) -> NSURLSessionDataTask?

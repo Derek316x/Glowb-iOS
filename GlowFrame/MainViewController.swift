@@ -16,13 +16,6 @@ class MainViewController: UIViewController,
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var relationships: [Relationship] = {
-        return [
-          Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267")),
-          Relationship(image: UIImage(named: "hannah")!, device: Device(deviceID: "300035000547343232363230")),
-          Relationship(image: UIImage(named: "boys")!, device: Device(deviceID: "300035000547343232363230"))
-        ]
-    }()
     
     
     // MARK: - Life cycle
@@ -68,11 +61,11 @@ class MainViewController: UIViewController,
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return relationships.count + 1
+        return User.currentUser.relationships.count + 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if indexPath.row == relationships.count {
+        if indexPath.row == User.currentUser.relationships.count {
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NewRelationshipCollectionViewCell.CellIdentifier, forIndexPath: indexPath) as? NewRelationshipCollectionViewCell {
                 
                 cell.newItemButtonTappedHandler = { [unowned self] in
@@ -84,7 +77,7 @@ class MainViewController: UIViewController,
         } else {
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(RelationshipCollectionViewCell.CellIdentifier, forIndexPath: indexPath) as? RelationshipCollectionViewCell {
                 
-                let relationship = relationships[indexPath.row]
+                let relationship = User.currentUser.relationships[indexPath.row]
                 cell.relationship = relationship
                 return cell
             }
@@ -135,13 +128,13 @@ class MainViewController: UIViewController,
                 return nil
         }
         
-        guard indexPath.row != relationships.count else { return nil }
+        guard indexPath.row != User.currentUser.relationships.count else { return nil }
         
         previewingContext.sourceRect = cell.frame
         let viewController = HeartViewController(nibName: HeartViewController.nibName(), bundle: nil)
         viewController.preferredContentSize = CGSize(width: view.frame.size.width - 30, height: view.frame.size.width - 30)
         
-        relationships[indexPath.row].activate()
+        User.currentUser.relationships[indexPath.row].activate()
         
         return viewController
     }

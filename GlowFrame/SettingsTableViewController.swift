@@ -11,30 +11,66 @@ import Spark_SDK
 
 class SettingsTableViewController: UITableViewController {
 
-    @IBOutlet weak var logInOrLoggedInLabel: UILabel!
-    
-    @IBAction func doneButtonTapped(sender: AnyObject) {
+    @IBAction func doneButtonTapped(sender: AnyObject)
+    {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         super.viewWillAppear(animated)
-        
-        if User.currentUser.isLoggedInToParticle {
-            logInOrLoggedInLabel.text = User.currentUser.loggedInParticleUsername
-        } else {
-            logInOrLoggedInLabel.text = "Log In"
-        }
         
         if let ip = tableView.indexPathForSelectedRow {
             tableView.deselectRowAtIndexPath(ip, animated: true)
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+    // MARK: - Table view data source
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        return 2
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        switch section {
+        case 0: return 1
+        case 1: return User.currentUser.relationships.count
+        default: return 0
+        }
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
+            cell.textLabel?.text = "Log In"
+            if User.currentUser.isLoggedInToParticle {
+                cell.textLabel?.text = User.currentUser.loggedInParticleUsername
+            }
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
+            cell.textLabel?.text = User.currentUser.relationships[indexPath.row].device.particleDevice?.name
+            return cell
+        default: return UITableViewCell()
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
         if indexPath.section == 0 && indexPath.row == 1 {
             
+        }
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0: return "Particle Account"
+        case 1: return "Relationships"
+        default: return nil
         }
     }
 }

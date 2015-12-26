@@ -9,16 +9,6 @@
 import UIKit
 import Alamofire
 
-extension UIImage {
-    class func imageForConnectionState(connected: Bool) -> UIImage
-    {
-        if (connected) {
-            return UIImage(named: "connected")!
-        } else {
-            return UIImage(named: "disconnected")!
-        }
-    }
-}
 
 class DeviceManagementView: UIView {
     
