@@ -42,7 +42,9 @@ class DeviceManagementView: UIView {
     private func showLoadedDevice(device: Device)
     {
         deviceNameLabel.text = device.particleDevice!.name
-        deviceProductTypeLabel.text = "(\(device.particleDevice!.type))"
+        if let type = device.type {
+            deviceProductTypeLabel.text = type
+        }
         deviceStatusImageView.image = UIImage.imageForConnectionState(device.particleDevice!.connected)
         
         loadingIndicator.stopAnimating()

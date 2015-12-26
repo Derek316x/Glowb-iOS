@@ -35,6 +35,17 @@ class MainViewController: UIViewController,
         registerForPreviewingWithDelegate(self, sourceView: collectionView)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        if !User.currentUser.isLoggedInToParticle {
+            if let viewController = storyboard?.instantiateViewControllerWithIdentifier(ParticleSettingsTableViewController.StoryboardIdentifier) as? ParticleSettingsTableViewController {
+                viewController.presentedModally = true
+                let navigationController = UINavigationController(rootViewController: viewController)
+                presentViewController(navigationController, animated: true, completion: nil)
+            }
+        }
+        super.viewDidAppear(animated)
+    }
+    
     
     // MARK: - Setup
     
@@ -130,7 +141,7 @@ class MainViewController: UIViewController,
         let viewController = HeartViewController(nibName: HeartViewController.nibName(), bundle: nil)
         viewController.preferredContentSize = CGSize(width: view.frame.size.width - 30, height: view.frame.size.width - 30)
         
-        GlowAPIManager.glowForRelationship(relationships[indexPath.row])
+        relationships[indexPath.row].activate()
         
         return viewController
     }

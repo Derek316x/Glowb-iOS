@@ -45,8 +45,10 @@ class ParticleAPIManager {
         var params = defaultParams
         params["args"] = args
         
-        return Alamofire.request(.POST, url, parameters: params, encoding: .URL, headers: nil).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
-            print(response.result.value)
+        return Alamofire.request(.POST, url, parameters: params, encoding: .URL, headers: nil).responseJSON {
+            (response: Response<AnyObject, NSError>) -> Void in
+            
+                print(response.result.value)
         }
     }
 }

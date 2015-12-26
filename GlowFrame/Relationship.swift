@@ -12,12 +12,16 @@ import UIKit
 class Relationship {
     
     let image: UIImage
-    var device: Device
+    let device: Device
     
     init(image: UIImage, device: Device)
     {
         self.image = image
         self.device = device
+    }
+    
+    func activate() {
+        device.particleDevice?.callFunction("glow", withArguments: ["purple"], completion: nil)
     }
     
 }

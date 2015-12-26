@@ -11,14 +11,18 @@ import Spark_SDK
 
 class ParticleSettingsTableViewController: UITableViewController {
     
-    let loggedOutDataSource = ParticleLoggedOutTableViewDataSource()
-    let loggedInDataSource = ParticleLoggedInTableViewDataSource()
+    var presentedModally: Bool = false
+    var userDevices = User.currentUser.devices.sort { $0.name < $1.name }
+    
+    class var StoryboardIdentifier: String {
+        return "ParticleSettingsIdentifier"
+    }
     
     override func viewDidLoad()
     {
-        super.viewDidLoad()
-        
         setup()
+        
+        super.viewDidLoad()
     }
     
     override func viewWillAppear(animated: Bool)
@@ -28,12 +32,14 @@ class ParticleSettingsTableViewController: UITableViewController {
         if let ip = tableView.indexPathForSelectedRow {
             tableView.deselectRowAtIndexPath(ip, animated: true)
         }
+        
     }
     
     override func viewDidAppear(animated: Bool)
     {
         if User.currentUser.isLoggedInToParticle {
             User.currentUser.getDevices({ (devices: [SparkDevice]!, error: NSError!) -> Void in
+                self.userDevices = User.currentUser.devices.sort { $0.name < $1.name }
                 self.tableView.reloadData()
                 let set = NSMutableIndexSet(index: 0)
                 self.tableView.reloadSections(set, withRowAnimation: .Automatic)
@@ -43,6 +49,12 @@ class ParticleSettingsTableViewController: UITableViewController {
         super.viewDidAppear(animated)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        view.endEditing(true)
+    }
+    
     private func setup()
     {
         if User.currentUser.isLoggedInToParticle {
@@ -50,17 +62,6 @@ class ParticleSettingsTableViewController: UITableViewController {
         } else {
             navigationItem.title = "Particle"
         }
-    }
-    
-    private func setupTableViewDataSource()
-    {
-        if User.currentUser.isLoggedInToParticle {
-            tableView.dataSource = loggedInDataSource
-        } else {
-            tableView.dataSource = loggedOutDataSource
-        }
-        
-        tableView.reloadData()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -76,7 +77,7 @@ class ParticleSettingsTableViewController: UITableViewController {
     {
         if User.currentUser.isLoggedInToParticle {
             switch section {
-            case 0: return User.currentUser.devices.count
+            case 0: return userDevices.count
             case 1: return 1
             default: return 0
             }
@@ -94,8 +95,7 @@ class ParticleSettingsTableViewController: UITableViewController {
         if User.currentUser.isLoggedInToParticle {
             switch indexPath.section {
             case 0:
-                let devices = Array(User.currentUser.devices)
-                let device = devices[indexPath.row]
+                let device = userDevices[indexPath.row]
                 let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
                 cell.textLabel?.text = device.name
                 cell.textLabel?.textColor = UIColor.blackColor()
@@ -175,23 +175,30 @@ class ParticleSettingsTableViewController: UITableViewController {
         
         User.currentUser.particleAccount.loginWithUser(emailText, password: passwordText) { (error: NSError!) -> Void in
             
-            self.tableView.reloadData()
-            let set = NSMutableIndexSet()
-            set.addIndex(0)
-            self.tableView.reloadSections(set, withRowAnimation: .Automatic)
+            if self.presentedModally {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                self.tableView.reloadData()
+                let set = NSMutableIndexSet()
+                set.addIndex(0)
+                self.tableView.reloadSections(set, withRowAnimation: .Automatic)
+                
+                self.navigationItem.title = User.currentUser.loggedInParticleUsername
+            }
             
-            self.navigationItem.title = User.currentUser.loggedInParticleUsername
         }
     }
     
     private func logOutParticleUser()
     {
         User.currentUser.particleAccount.logout()
+        
+        navigationItem.title = "Particle"
+        
         tableView.reloadData()
         let set = NSMutableIndexSet()
         set.addIndex(0)
         set.addIndex(1)
-        navigationItem.title = "Particle"
         tableView.reloadSections(set, withRowAnimation: .Automatic)
     }
 }

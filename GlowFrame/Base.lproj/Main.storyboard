@@ -138,7 +138,7 @@
         <!--Particle-->
         <scene sceneID="Dxa-L4-IyW">
             <objects>
-                <tableViewController id="GZ8-aN-BFM" customClass="ParticleSettingsTableViewController" customModule="GlowFrame" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ParticleSettingsIdentifier" id="GZ8-aN-BFM" customClass="ParticleSettingsTableViewController" customModule="GlowFrame" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="3cm-Dm-gns">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

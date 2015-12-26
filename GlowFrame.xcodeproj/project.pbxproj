@@ -18,8 +18,6 @@
 		8D710E911C2C7E8A0076DEBF /* ParticleSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D710E901C2C7E8A0076DEBF /* ParticleSettingsTableViewController.swift */; };
 		8D710E931C2C82190076DEBF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D710E921C2C82190076DEBF /* User.swift */; };
 		8D710E951C2C847F0076DEBF /* LabelFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D710E941C2C847F0076DEBF /* LabelFieldTableViewCell.swift */; };
-		8D710E981C2C8E440076DEBF /* ParticleLoggedInTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D710E971C2C8E440076DEBF /* ParticleLoggedInTableViewDataSource.swift */; };
-		8D710E9A1C2C8E4D0076DEBF /* ParticleLoggedOutTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D710E991C2C8E4D0076DEBF /* ParticleLoggedOutTableViewDataSource.swift */; };
 		8D714B051C262609008E105F /* NewRelationshipCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D714B041C262609008E105F /* NewRelationshipCollectionViewCell.xib */; };
 		8D714B071C262618008E105F /* NewRelationshipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D714B061C262618008E105F /* NewRelationshipCollectionViewCell.swift */; };
 		8D714B091C2668EE008E105F /* RelationshipCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D714B081C2668EE008E105F /* RelationshipCollectionViewCell.xib */; };
@@ -27,7 +25,6 @@
 		8D873EA01C27C37400938211 /* NewRelationshipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D873E9E1C27C37400938211 /* NewRelationshipViewController.xib */; };
 		8D9CC9BF1C154B1C000EC9FB /* ParticleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */; };
 		8DA21F601C2B159F00E27DA3 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DA21F5F1C2B159F00E27DA3 /* Keys.plist */; };
-		8DA3AAD11C1D211C0065B6D9 /* GlowAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA3AAD01C1D211C0065B6D9 /* GlowAPIManager.swift */; };
 		8DC319871C138B4D00B4E6E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC319861C138B4D00B4E6E0 /* AppDelegate.swift */; };
 		8DC319891C138B4D00B4E6E0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC319881C138B4D00B4E6E0 /* SettingsTableViewController.swift */; };
 		8DC3198C1C138B4D00B4E6E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DC3198A1C138B4D00B4E6E0 /* Main.storyboard */; };
@@ -54,8 +51,6 @@
 		8D710E901C2C7E8A0076DEBF /* ParticleSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleSettingsTableViewController.swift; sourceTree = "<group>"; };
 		8D710E921C2C82190076DEBF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8D710E941C2C847F0076DEBF /* LabelFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelFieldTableViewCell.swift; sourceTree = "<group>"; };
-		8D710E971C2C8E440076DEBF /* ParticleLoggedInTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleLoggedInTableViewDataSource.swift; sourceTree = "<group>"; };
-		8D710E991C2C8E4D0076DEBF /* ParticleLoggedOutTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleLoggedOutTableViewDataSource.swift; sourceTree = "<group>"; };
 		8D714B041C262609008E105F /* NewRelationshipCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRelationshipCollectionViewCell.xib; sourceTree = "<group>"; };
 		8D714B061C262618008E105F /* NewRelationshipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRelationshipCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D714B081C2668EE008E105F /* RelationshipCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelationshipCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -63,7 +58,6 @@
 		8D873E9E1C27C37400938211 /* NewRelationshipViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRelationshipViewController.xib; sourceTree = "<group>"; };
 		8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleAPIManager.swift; sourceTree = "<group>"; };
 		8DA21F5F1C2B159F00E27DA3 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
-		8DA3AAD01C1D211C0065B6D9 /* GlowAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowAPIManager.swift; sourceTree = "<group>"; };
 		8DC319831C138B4D00B4E6E0 /* GlowFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlowFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC319861C138B4D00B4E6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DC319881C138B4D00B4E6E0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -113,8 +107,6 @@
 			children = (
 				8DC319881C138B4D00B4E6E0 /* SettingsTableViewController.swift */,
 				8D710E901C2C7E8A0076DEBF /* ParticleSettingsTableViewController.swift */,
-				8D710E971C2C8E440076DEBF /* ParticleLoggedInTableViewDataSource.swift */,
-				8D710E991C2C8E4D0076DEBF /* ParticleLoggedOutTableViewDataSource.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -140,6 +132,7 @@
 		8DC319851C138B4D00B4E6E0 /* GlowFrame */ = {
 			isa = PBXGroup;
 			children = (
+				8DD708331C15FB88006570B4 /* Model */,
 				8DC319861C138B4D00B4E6E0 /* AppDelegate.swift */,
 				8D710E961C2C8E310076DEBF /* Settings */,
 				8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */,
@@ -148,7 +141,6 @@
 				8DD708311C15F6A0006570B4 /* RelationshipView.swift */,
 				8D873E9D1C27C37400938211 /* NewRelationshipViewController.swift */,
 				8D873E9E1C27C37400938211 /* NewRelationshipViewController.xib */,
-				8DD708331C15FB88006570B4 /* Model */,
 				8DD708341C15FB9D006570B4 /* UI */,
 				8DC3198D1C138B4D00B4E6E0 /* Assets.xcassets */,
 				8DC319921C138B4D00B4E6E0 /* Info.plist */,
@@ -160,10 +152,9 @@
 		8DD708331C15FB88006570B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */,
-				8DA3AAD01C1D211C0065B6D9 /* GlowAPIManager.swift */,
 				8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */,
 				8D710E921C2C82190076DEBF /* User.swift */,
+				8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */,
 				8D27B71F1C2BB4370023C1A2 /* Device */,
 			);
 			name = Model;
@@ -327,20 +318,17 @@
 				8D27B7231C2BC10F0023C1A2 /* DeviceSettings.swift in Sources */,
 				8DC319891C138B4D00B4E6E0 /* SettingsTableViewController.swift in Sources */,
 				8DEFEB951C2AFFE5003CCE8A /* HighlightImageView.swift in Sources */,
-				8DA3AAD11C1D211C0065B6D9 /* GlowAPIManager.swift in Sources */,
 				8D714B071C262618008E105F /* NewRelationshipCollectionViewCell.swift in Sources */,
 				8D5AA5831C1526CD00FBB1A2 /* HeartViewController.swift in Sources */,
 				8DC319871C138B4D00B4E6E0 /* AppDelegate.swift in Sources */,
 				8D5C65BA1C260E8E00F48F98 /* DeviceManagementView.swift in Sources */,
 				8D5AA57A1C151B3C00FBB1A2 /* Relationship.swift in Sources */,
 				8D710E911C2C7E8A0076DEBF /* ParticleSettingsTableViewController.swift in Sources */,
-				8D710E981C2C8E440076DEBF /* ParticleLoggedInTableViewDataSource.swift in Sources */,
 				8D9CC9BF1C154B1C000EC9FB /* ParticleAPIManager.swift in Sources */,
 				8DD708361C15FF06006570B4 /* RelationshipCollectionViewCell.swift in Sources */,
 				8D37D2E11C15EB5B00B8E148 /* MainViewController.swift in Sources */,
 				8D710E931C2C82190076DEBF /* User.swift in Sources */,
 				8D710E951C2C847F0076DEBF /* LabelFieldTableViewCell.swift in Sources */,
-				8D710E9A1C2C8E4D0076DEBF /* ParticleLoggedOutTableViewDataSource.swift in Sources */,
 				8D873E9F1C27C37400938211 /* NewRelationshipViewController.swift in Sources */,
 				8DD708321C15F6A0006570B4 /* RelationshipView.swift in Sources */,
 				8D37D2E31C15EC0700B8E148 /* Device.swift in Sources */,

@@ -15,6 +15,12 @@ class Device {
     let deviceID: String
     var particleDevice:  SparkDevice?
     var deviceSettings: DeviceSettings?
+    var type: String? {
+        guard let device = particleDevice else {
+            return nil
+        }
+        return [0: "Core", 6: "Photon"][device.type.rawValue]
+    }
     private var updatedAt: NSDate?
     
     var connected: Bool {
