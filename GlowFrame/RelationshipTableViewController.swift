@@ -18,18 +18,12 @@ struct RelationshipConstructor {
     
     // TODO: Validation
     
-    func build() -> Relationship? {
-        
-        print(particleDevice)
-        print(image)
-        print(name)
-        print(settings)
-        
+    func build() -> Relationship?
+    {
         guard let particleDevice = particleDevice,
             image = image,
             settings = settings,
-            name = name else
-        {
+            name = name else {
                 return nil
         }
         
@@ -76,12 +70,19 @@ class RelationshipTableViewController: UITableViewController,
     {
         setupTableView()
         setupNavigationBar()
+        
+        User.currentUser.getDevices { (devices: [SparkDevice]!, error: NSError!) -> Void in
+            self.devices = User.currentUser.devices.sort { $0.name < $1.name }
+            self.tableView.reloadData()
+            self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+        }
     }
     
     private func setupTableView()
     {
         tableView.registerNib(TableCell.Basic.Nib, forCellReuseIdentifier: TableCell.Basic.Identifier)
         tableView.registerNib(TableCell.LabelTextField.Nib, forCellReuseIdentifier: TableCell.LabelTextField.Identifier)
+        tableView.registerNib(TableCell.ParticleDevice.Nib, forCellReuseIdentifier: TableCell.ParticleDevice.Identifier)
     }
     
     private func setupNavigationBar()
@@ -135,7 +136,7 @@ class RelationshipTableViewController: UITableViewController,
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return User.currentUser.devices.count
+        case 1: return devices.count
         case 2: return 3
         default: return 0
         }
@@ -154,9 +155,11 @@ class RelationshipTableViewController: UITableViewController,
             }
             return UITableViewCell()
         case 1:
-            let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
-            cell.textLabel?.text = devices[indexPath.row].name
-            return cell
+            if let cell = TableCell.ParticleDevice.dequeue(tableView, forIndexPath: indexPath) as? ParticleDeviceTableViewCell {
+                cell.device = devices[indexPath.row]
+                return cell
+            }
+            return UITableViewCell()
         case 2:
             let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
             switch indexPath.row {
@@ -219,5 +222,4 @@ class RelationshipTableViewController: UITableViewController,
         constructor.name = textField.text
         textField.resignFirstResponder()
     }
-
 }

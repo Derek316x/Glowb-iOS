@@ -97,9 +97,7 @@ class ParticleSettingsTableViewController: UITableViewController {
                     return UITableViewCell()
                 }
                 
-                let device = userDevices[indexPath.row]
-                cell.nameLabel.text = device.name
-                cell.connectedImageView.image = UIImage.imageForConnectionState(device.connected)
+                cell.device = userDevices[indexPath.row]
                 return cell
                 
             case 1: // Log Out

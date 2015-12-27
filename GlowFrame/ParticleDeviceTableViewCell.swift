@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import Spark_SDK
 
 class ParticleDeviceTableViewCell: UITableViewCell {
+    
+    var device: SparkDevice? {
+        didSet {
+            nameLabel.text = device!.name
+            connectedImageView.image = UIImage.imageForConnectionState(device!.connected)
+        }
+    }
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var connectedImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var connectedImageView: UIImageView!
     
     class var CellIdentifier: String {
         return TableCell.ParticleDevice.Identifier
