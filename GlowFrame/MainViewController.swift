@@ -27,6 +27,12 @@ class MainViewController: UIViewController,
         setup()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        collectionView.reloadData()
+    }
+    
     override func viewDidAppear(animated: Bool)
     {
         if !User.currentUser.isLoggedInToParticle {

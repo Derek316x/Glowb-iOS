@@ -11,10 +11,18 @@ import Spark_SDK
 
 class ParticleDeviceTableViewCell: GlowbTableViewCell {
     
+    var enabled: Bool = true
+    
     var device: SparkDevice? {
         didSet {
             nameLabel.text = device!.name
             connectedImageView.image = UIImage.imageForConnectionState(device!.connected)
+            
+            if !device!.connected {
+                setDisabled()
+            } else {
+                setEnabled()
+            }
         }
     }
 
@@ -25,9 +33,24 @@ class ParticleDeviceTableViewCell: GlowbTableViewCell {
         return TableCell.ParticleDevice.Identifier
     }
     
-    override func setDarkTheme() {
+    override func setDarkTheme()
+    {
         nameLabel.textColor = UIColor.whiteColor()
         backgroundColor = UIColor.blackColor()
         super.setDarkTheme()
+    }
+    
+    private func setDisabled()
+    {
+        selectionStyle = .None
+        nameLabel.textColor = UIColor.grayColor()
+        enabled = false
+    }
+    
+    private func setEnabled()
+    {
+        selectionStyle = .Default
+        nameLabel.textColor = theme == .Dark ? UIColor.whiteColor() : UIColor.blackColor()
+        enabled = true
     }
 }

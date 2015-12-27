@@ -23,6 +23,7 @@ class DeviceManagementView: UIView {
         showLoadedDevice(device)
     }
     
+    
     // MARK: - Imperative
     
     private func showLoadedDevice(device: Device)

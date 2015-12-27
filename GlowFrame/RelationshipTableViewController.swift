@@ -199,6 +199,10 @@ class RelationshipTableViewController: UITableViewController,
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
+            let device = devices[indexPath.row]
+            guard device.connected else {
+                return
+            }
             constructor.particleDevice = devices[indexPath.row]
         }
         

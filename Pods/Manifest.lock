@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Spark-SDK:
-    :commit: 29a636194f899db8060be910273d526993070750
+    :commit: 76b0a40b09eb866055d21075f5345a73a646eeef
     :git: https://github.com/mikekavouras/spark-sdk-ios
 
 SPEC CHECKSUMS:

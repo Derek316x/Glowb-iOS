@@ -17,6 +17,11 @@ class LabelTextFieldTableViewCell: GlowbTableViewCell {
         return TableCell.LabelTextField.Identifier
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .None
+    }
+    
     override func setDarkTheme() {
         label.textColor = UIColor.whiteColor()
         textField.textColor = UIColor.whiteColor()

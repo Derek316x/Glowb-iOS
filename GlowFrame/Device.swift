@@ -10,20 +10,21 @@ import Foundation
 import Alamofire
 import Spark_SDK
 
+
 class Device {
     
+    private var updatedAt: NSDate?
     var particleDevice:  SparkDevice
     var settings: DeviceSettings
     var type: String? {
         return [0: "Core", 6: "Photon"][particleDevice.type.rawValue]
     }
-    private var updatedAt: NSDate?
-    
     var connected: Bool {
-        return particleDevice       .connected
+        return particleDevice.connected
     }
     
-    init(device: SparkDevice, settings: DeviceSettings) {
+    init(device: SparkDevice, settings: DeviceSettings)
+    {
         particleDevice = device
         self.settings = settings
     }
@@ -52,4 +53,5 @@ class Device {
             completion()
         })
     }
+    
 }

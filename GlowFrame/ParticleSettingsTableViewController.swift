@@ -12,7 +12,7 @@ import Spark_SDK
 class ParticleSettingsTableViewController: UITableViewController {
     
     var presentedModally: Bool = false
-    var userDevices = User.currentUser.devices.sort { $0.name < $1.name }
+    var devices = User.currentUser.devices.sort { $0.name < $1.name }
     
     class var StoryboardIdentifier: String {
         return "ParticleSettingsIdentifier"
@@ -28,6 +28,8 @@ class ParticleSettingsTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        
+        tableView.reloadData()
         
         if let ip = tableView.indexPathForSelectedRow {
             tableView.deselectRowAtIndexPath(ip, animated: true)
@@ -72,7 +74,7 @@ class ParticleSettingsTableViewController: UITableViewController {
     {
         if User.currentUser.isLoggedInToParticle {
             switch section {
-            case 0: return userDevices.count
+            case 0: return devices.count
             case 1: return 1
             default: return 0
             }
@@ -97,7 +99,8 @@ class ParticleSettingsTableViewController: UITableViewController {
                     return UITableViewCell()
                 }
                 
-                cell.device = userDevices[indexPath.row]
+                cell.accessoryType = .DisclosureIndicator
+                cell.device = devices[indexPath.row]
                 return cell
                 
             case 1: // Log Out
@@ -157,8 +160,22 @@ class ParticleSettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        if User.currentUser.isLoggedInToParticle && indexPath.section == 1 {
-            logOutParticleUser()
+        if User.currentUser.isLoggedInToParticle {
+            switch indexPath.section {
+            case 0: // Devices
+                let device = devices[indexPath.row]
+                guard device.connected else {
+                    return
+                }
+                if let viewController = storyboard?.instantiateViewControllerWithIdentifier(DeviceDetailTableViewController.StoryboardIdentifier) as? DeviceDetailTableViewController
+                {
+                    viewController.device = device
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+            case 1: // Log Out
+                logOutParticleUser()
+            default: return
+            }
         } else {
             guard indexPath.section != 0 else { return }
             logInParticleUser()
