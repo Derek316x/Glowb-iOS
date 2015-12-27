@@ -21,6 +21,7 @@ class LabelTextFieldTableViewCell: GlowbTableViewCell {
         label.textColor = UIColor.whiteColor()
         textField.textColor = UIColor.whiteColor()
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+        textField.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.9)
 
         super.setDarkTheme()
     }

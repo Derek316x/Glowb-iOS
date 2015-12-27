@@ -89,6 +89,12 @@ class RelationshipTableViewController: UITableViewController,
     {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "save")
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.translucent = true
+        
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     
@@ -233,5 +239,12 @@ class RelationshipTableViewController: UITableViewController,
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         view.endEditing(true)
+    }
+    
+    
+    // MARK: - Utility
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }

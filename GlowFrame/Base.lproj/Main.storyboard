@@ -154,9 +154,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.13461627978021426" green="0.1344454769303963" blue="0.13742897727272729" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="1me-9C-2Kh">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="218"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="238"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NWw-XI-QPm" customClass="HighlightImageView" customModule="GlowFrame" customModuleProvider="target">
@@ -191,26 +191,42 @@
                                         <action selector="newImageButtonTapped:" destination="TGh-C4-wTW" eventType="touchUpInside" id="6Rv-eY-E1W"/>
                                     </connections>
                                 </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sS-wD-HrZ">
+                                    <rect key="frame" x="15" y="217" width="570" height="2"/>
+                                    <color key="backgroundColor" red="0.11854876893939392" green="0.11854876893939392" blue="0.11854876893939392" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="o5g-ke-nbc"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="C6b-Br-uxt" secondAttribute="bottom" constant="20" id="0cQ-hb-eAX"/>
+                                <constraint firstItem="3sS-wD-HrZ" firstAttribute="top" secondItem="C6b-Br-uxt" secondAttribute="bottom" constant="19" id="8MD-nE-q03"/>
+                                <constraint firstAttribute="trailing" secondItem="3sS-wD-HrZ" secondAttribute="trailing" constant="15" id="Bff-hN-QDz"/>
+                                <constraint firstAttribute="bottom" secondItem="3sS-wD-HrZ" secondAttribute="bottom" constant="19" id="EWL-oz-MqH"/>
                                 <constraint firstItem="NWw-XI-QPm" firstAttribute="leading" secondItem="1me-9C-2Kh" secondAttribute="leading" constant="15" id="OMv-5h-I6Z"/>
                                 <constraint firstItem="C6b-Br-uxt" firstAttribute="centerX" secondItem="1me-9C-2Kh" secondAttribute="centerX" id="OcG-EP-wsz"/>
+                                <constraint firstItem="3sS-wD-HrZ" firstAttribute="leading" secondItem="1me-9C-2Kh" secondAttribute="leading" constant="15" id="Pfc-cF-lc1"/>
+                                <constraint firstItem="3sS-wD-HrZ" firstAttribute="top" secondItem="NWw-XI-QPm" secondAttribute="bottom" constant="19" id="Rfc-ec-fgz"/>
                                 <constraint firstItem="NWw-XI-QPm" firstAttribute="centerX" secondItem="1me-9C-2Kh" secondAttribute="centerX" id="Rrt-eH-2Hf"/>
                                 <constraint firstItem="C6b-Br-uxt" firstAttribute="top" secondItem="1me-9C-2Kh" secondAttribute="top" constant="20" id="SpQ-na-6pi"/>
                                 <constraint firstItem="NWw-XI-QPm" firstAttribute="top" secondItem="1me-9C-2Kh" secondAttribute="top" constant="20" id="bmp-ZW-oCX"/>
                                 <constraint firstAttribute="bottom" secondItem="NWw-XI-QPm" secondAttribute="bottom" constant="20" id="rha-h3-2xF"/>
+                                <constraint firstAttribute="bottom" secondItem="3sS-wD-HrZ" secondAttribute="bottom" id="yqW-Eh-7Il"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
+                                    <exclude reference="yqW-Eh-7Il"/>
+                                    <exclude reference="0cQ-hb-eAX"/>
                                     <exclude reference="OMv-5h-I6Z"/>
+                                    <exclude reference="rha-h3-2xF"/>
                                 </mask>
                             </variation>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WGC-sC-8Y1">
-                                <rect key="frame" x="0.0" y="267.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="287.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WGC-sC-8Y1" id="NnQ-9g-xTL">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>

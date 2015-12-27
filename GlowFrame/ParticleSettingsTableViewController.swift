@@ -120,6 +120,7 @@ class ParticleSettingsTableViewController: UITableViewController {
                     guard let cell = TableCell.LabelTextField.dequeue(tableView, forIndexPath: indexPath) as? LabelTextFieldTableViewCell else {
                         return UITableViewCell()
                     }
+                    cell.selectionStyle = .None
                     
                     switch indexPath.row {
                     case 0:
