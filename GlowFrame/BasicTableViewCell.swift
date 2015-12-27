@@ -8,9 +8,14 @@
 
 import UIKit
 
-class BasicTableViewCell: UITableViewCell {
+class BasicTableViewCell: GlowbTableViewCell {
 
     class var CellIdentifier: String {
         return TableCell.Basic.Identifier
+    }
+    
+    override func setDarkTheme() {
+        textLabel?.textColor = UIColor.whiteColor()
+        super.setDarkTheme()
     }
 }

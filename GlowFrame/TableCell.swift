@@ -8,6 +8,20 @@
 
 import UIKit
 
+protocol Themeable {
+    var theme: TableCellTheme {
+        get
+    }
+    
+    func setLightTheme()
+    func setDarkTheme()
+}
+
+enum TableCellTheme {
+    case Light
+    case Dark
+}
+
 enum TableCell  {
     case Basic
     case LabelTextField
@@ -21,7 +35,7 @@ enum TableCell  {
         }
     }
     
-    var NibName: String {
+    private var NibName: String {
         switch self {
         case .Basic: return "BasicTableViewCell"
         case .LabelTextField: return "LabelTextFieldTableViewCell"

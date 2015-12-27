@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Required" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zut-HD-HvX">
-                        <rect key="frame" x="77" y="7" width="278" height="30"/>
+                        <rect key="frame" x="77" y="7.5" width="278" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="NEc-UN-Z1n"/>
                         </constraints>
@@ -40,7 +40,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="w0x-bO-oBH" firstAttribute="leading" secondItem="iLx-Nm-oq0" secondAttribute="leading" constant="15" id="D7e-hj-u9I"/>
-                    <constraint firstItem="Zut-HD-HvX" firstAttribute="centerY" secondItem="w0x-bO-oBH" secondAttribute="centerY" id="YHc-qf-rXx"/>
+                    <constraint firstItem="Zut-HD-HvX" firstAttribute="centerY" secondItem="w0x-bO-oBH" secondAttribute="centerY" constant="1" id="YHc-qf-rXx"/>
                     <constraint firstItem="Zut-HD-HvX" firstAttribute="leading" secondItem="w0x-bO-oBH" secondAttribute="trailing" constant="20" id="bPE-CD-vcd"/>
                     <constraint firstItem="Zut-HD-HvX" firstAttribute="trailing" secondItem="iLx-Nm-oq0" secondAttribute="trailingMargin" id="lvO-Si-knK"/>
                     <constraint firstItem="w0x-bO-oBH" firstAttribute="centerY" secondItem="iLx-Nm-oq0" secondAttribute="centerY" id="qbR-TG-dYg"/>

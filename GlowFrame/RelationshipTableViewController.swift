@@ -147,6 +147,7 @@ class RelationshipTableViewController: UITableViewController,
         switch indexPath.section {
         case 0:
             if let cell = TableCell.LabelTextField.dequeue(tableView, forIndexPath: indexPath) as? LabelTextFieldTableViewCell {
+                cell.theme = .Dark
                 cell.label.text = "Name"
                 cell.textField.placeholder = "Required"
                 cell.selectionStyle = .None
@@ -156,19 +157,23 @@ class RelationshipTableViewController: UITableViewController,
             return UITableViewCell()
         case 1:
             if let cell = TableCell.ParticleDevice.dequeue(tableView, forIndexPath: indexPath) as? ParticleDeviceTableViewCell {
+                cell.theme = .Dark
                 cell.device = devices[indexPath.row]
                 return cell
             }
             return UITableViewCell()
         case 2:
-            let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
-            switch indexPath.row {
-            case 0: cell.textLabel?.text = "Blue"
-            case 1: cell.textLabel?.text = "Red"
-            case 2: cell.textLabel?.text = "Purple"
-            default: break
+            if let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath) as? BasicTableViewCell {
+                cell.theme = .Dark
+                switch indexPath.row {
+                case 0: cell.textLabel?.text = "Blue"
+                case 1: cell.textLabel?.text = "Red"
+                case 2: cell.textLabel?.text = "Purple"
+                default: break
+                }
+                return cell
             }
-            return cell
+            return UITableViewCell()
         default: return UITableViewCell()
         }
 
@@ -176,7 +181,7 @@ class RelationshipTableViewController: UITableViewController,
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return "Name"
+        case 0: return nil
         case 1: return "Device"
         case 2: return "Color"
         default: return nil
@@ -221,5 +226,12 @@ class RelationshipTableViewController: UITableViewController,
     func textFieldDidEndEditing(textField: UITextField) {
         constructor.name = textField.text
         textField.resignFirstResponder()
+    }
+    
+    
+    // MARK: - Scroll view delegate
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        view.endEditing(true)
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Spark_SDK
 
-class ParticleDeviceTableViewCell: UITableViewCell {
+class ParticleDeviceTableViewCell: GlowbTableViewCell {
     
     var device: SparkDevice? {
         didSet {
@@ -18,11 +18,16 @@ class ParticleDeviceTableViewCell: UITableViewCell {
         }
     }
 
-    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet private weak var connectedImageView: UIImageView!
     
     class var CellIdentifier: String {
         return TableCell.ParticleDevice.Identifier
     }
     
+    override func setDarkTheme() {
+        nameLabel.textColor = UIColor.whiteColor()
+        backgroundColor = UIColor.blackColor()
+        super.setDarkTheme()
+    }
 }
