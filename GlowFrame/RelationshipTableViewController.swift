@@ -71,7 +71,7 @@ class RelationshipTableViewController: UITableViewController,
         setupTableView()
         setupNavigationBar()
         
-        User.currentUser.getDevices { (devices: [SparkDevice]!, error: NSError!) -> Void in
+        User.currentUser.getDevices { (_, _) -> Void in
             self.devices = User.currentUser.devices.sort { $0.name < $1.name }
             self.tableView.reloadData()
             self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)

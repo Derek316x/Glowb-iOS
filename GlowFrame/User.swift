@@ -12,7 +12,7 @@ import Spark_SDK
 class User {
     
     static let currentUser = User()
-    let particleAccount = SparkCloud.sharedInstance()
+    let particleAccount = SparkCloud.sharedInstance(    )
     var isLoggedInToParticle: Bool {
         return particleAccount.isLoggedIn
     }
@@ -20,45 +20,39 @@ class User {
         return particleAccount.loggedInUsername
     }
     
-    var relationships: [Relationship] = {
-        return [
-//            Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267"), nickname: "Meagan"),
-//            Relationship(image: UIImage(named: "hannah")!, device: Device(deviceID: "300035000547343232363230"), nickname: "Hannah"),
-//            Relationship(image: UIImage(named: "boys")!, device: Device(deviceID: "300035000547343232363230"), nickname: "Andrew + Sam")
-        ]
-    }()
-    
+    var relationships = [Relationship]()
     var devices = Set<SparkDevice>()
     
-    func getDevice(deviceID: String, force: Bool = false, completion: (aDevice: SparkDevice!, aError: NSError!) -> Void) -> NSURLSessionDataTask?
+    func getDevice(deviceID: String, force: Bool = false, completion: ((SparkDevice?, NSError?) -> Void)?) -> NSURLSessionDataTask?
     {
         if !force {
             // Short circuit if we already have the device
             let equal = devices.filter { $0.id == deviceID }
             guard equal.count == 0 else {
-                completion(aDevice: equal.first!, aError: nil)
+                completion?(equal.first, nil)
                 return nil
             }
         }
         
-        return particleAccount.getDevice(deviceID) { (device: SparkDevice!, error: NSError!) -> Void in
-            if !force && device != nil {
-                let equal = self.devices.filter { $0.id == deviceID }
-                if equal.count == 0 {
-                    self.devices.insert(device)
+        return particleAccount.getDevice(deviceID) { (device: SparkDevice?, error: NSError?) -> Void in
+            if !force {
+                if let device = device {
+                    let equal = self.devices.filter { $0.id == deviceID }
+                    if equal.count == 0 {
+                        self.devices.insert(device)
+                    }
                 }
             }
-            completion(aDevice: device, aError: error)
+            
+            completion?(device, error)
         }
     }
     
-    func getDevices(completion: (([SparkDevice]!, NSError!) -> Void)?) -> NSURLSessionDataTask {
-        return particleAccount.getDevices({ (response: [AnyObject]!, error: NSError!) -> Void in
-            guard let devices = response as? [SparkDevice] else {
-                completion?(nil, error)
-                return
+    func getDevices(completion: (([SparkDevice]?, NSError?) -> Void)?) -> NSURLSessionDataTask? {
+        return particleAccount.getDevices({ (devices: [SparkDevice]?, error: NSError?) -> Void in
+            if let devices = devices {
+                self.devices = Set(devices)
             }
-            self.devices = Set(devices)
             completion?(devices, error)
         })
     }

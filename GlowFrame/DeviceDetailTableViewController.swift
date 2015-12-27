@@ -48,10 +48,13 @@ class DeviceDetailTableViewController: UITableViewController,
             return
         }
         
-        device.rename(cell.textField.text) { (error: NSError!) -> Void in
-            if error == nil {
-                self.navigationController?.popViewControllerAnimated(true)
-            }
+        guard let newName = cell.textField.text else {
+            return
+        }
+        
+        device.rename(newName) { (error: NSError?) -> Void in
+            guard error != nil else { return }
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
     
@@ -64,7 +67,7 @@ class DeviceDetailTableViewController: UITableViewController,
     {
         switch section {
         case 0: return 1
-        case 1: return device.functions.count
+        case 1: return device.functions?.count ?? 0
         default: return 0
         }
     }
@@ -84,7 +87,7 @@ class DeviceDetailTableViewController: UITableViewController,
         case 1:
             let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
             cell.selectionStyle = .None
-            cell.textLabel?.text = device.functions[indexPath.row] as? String
+            cell.textLabel?.text = device.functions?[indexPath.row] as? String
             return cell
         default: return UITableViewCell()
         }

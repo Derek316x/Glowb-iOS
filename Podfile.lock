@@ -25,15 +25,16 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
-  - Spark-SDK (from `https://github.com/mikekavouras/spark-sdk-ios`)
+  - Spark-SDK (from `https://github.com/mikekavouras/spark-sdk-ios`, branch `glowb`)
 
 EXTERNAL SOURCES:
   Spark-SDK:
+    :branch: glowb
     :git: https://github.com/mikekavouras/spark-sdk-ios
 
 CHECKOUT OPTIONS:
   Spark-SDK:
-    :commit: 76b0a40b09eb866055d21075f5345a73a646eeef
+    :commit: 38562674e6764670ab68e1ce32857144f1d03302
     :git: https://github.com/mikekavouras/spark-sdk-ios
 
 SPEC CHECKSUMS:

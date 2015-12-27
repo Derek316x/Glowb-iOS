@@ -29,7 +29,7 @@ class Device {
         self.settings = settings
     }
 
-    func updateInfo(force: Bool = false, completion: () -> Void) -> NSURLSessionTask?
+    func updateInfo(force: Bool = false, completion: (() -> Void)?) -> NSURLSessionTask?
     {
         // Don't reload unless it's been at least 2 minutes. Arbitrary.
         if !force {
@@ -43,14 +43,14 @@ class Device {
         return updateParticleRepresentation(force, completion)
     }
     
-    private func updateParticleRepresentation(force: Bool = false, _ completion: () -> Void) -> NSURLSessionTask?
+    private func updateParticleRepresentation(force: Bool = false, _ completion: (() -> Void)?) -> NSURLSessionTask?
     {
-        return User.currentUser.getDevice(particleDevice.id, force: force, completion: { (device: SparkDevice!, error: NSError!) -> Void in
-            if error == nil {
+        return User.currentUser.getDevice(particleDevice.id, force: force, completion: { (device: SparkDevice?, error: NSError?) -> Void in
+            if let device = device {
                 self.updatedAt = NSDate()
                 self.particleDevice = device
             }
-            completion()
+            completion?()
         })
     }
     

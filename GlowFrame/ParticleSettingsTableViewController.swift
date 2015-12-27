@@ -200,8 +200,7 @@ class ParticleSettingsTableViewController: UITableViewController {
                 return
         }
         
-        User.currentUser.particleAccount.loginWithUser(emailText, password: passwordText) { (error: NSError!) -> Void in
-            
+        User.currentUser.particleAccount.loginWithUser(emailText, password: passwordText) { (error: NSError?) -> Void in
             if self.presentedModally {
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
@@ -212,7 +211,6 @@ class ParticleSettingsTableViewController: UITableViewController {
                 
                 self.navigationItem.title = User.currentUser.loggedInParticleUsername
             }
-            
         }
     }
     
