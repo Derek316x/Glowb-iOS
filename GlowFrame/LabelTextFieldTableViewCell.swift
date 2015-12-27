@@ -8,12 +8,12 @@
 
 import UIKit
 
-class LabelFieldTableViewCell: UITableViewCell {
+class LabelTextFieldTableViewCell: UITableViewCell {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
     
     class var CellIdentifier: String {
-        return "LabelTextFieldCellIdentifier"
+        return TableCell.LabelTextField.Identifier
     }
 }

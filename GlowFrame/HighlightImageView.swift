@@ -8,26 +8,37 @@
 
 import UIKit
 
-class HighlightImageView: UIImageView {
+@IBDesignable
+class HighlightImageView: DesignableImageView {
     
     let highlightLayer = CALayer()
 
-    var cornerRadius: CGFloat = 0 {
+    @IBInspectable
+    override var cornerRadius: CGFloat {
         didSet {
             highlightLayer.cornerRadius = cornerRadius
             layer.cornerRadius = cornerRadius
         }
     }
     
+    @IBInspectable
     var highlightColor: UIColor = UIColor.whiteColor() {
         didSet {
             highlightLayer.borderColor = highlightColor.colorWithAlphaComponent(highlightAlpha).CGColor
         }
     }
     
+    @IBInspectable
     var highlightAlpha: CGFloat = 0.0 {
         didSet {
             highlightLayer.borderColor = highlightColor.colorWithAlphaComponent(highlightAlpha).CGColor
+        }
+    }
+    
+    @IBInspectable
+    var highlightWidth: CGFloat = 0.0 {
+        didSet {
+            highlightLayer.borderWidth = highlightWidth
         }
     }
     
@@ -51,9 +62,6 @@ class HighlightImageView: UIImageView {
     
     private func setup()
     {
-        highlightLayer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.2).CGColor
-        highlightLayer.borderWidth = 1.0
-        
         layer.addSublayer(highlightLayer)
     }
     

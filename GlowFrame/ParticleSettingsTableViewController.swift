@@ -35,23 +35,9 @@ class ParticleSettingsTableViewController: UITableViewController {
         
     }
     
-//    override func viewDidAppear(animated: Bool)
-//    {
-//        if User.currentUser.isLoggedInToParticle {
-//            User.currentUser.getDevices({ (devices: [SparkDevice]!, error: NSError!) -> Void in
-//                self.userDevices = User.currentUser.devices.sort { $0.name < $1.name }
-//                self.tableView.reloadData()
-//                let set = NSMutableIndexSet(index: 0)
-//                self.tableView.reloadSections(set, withRowAnimation: .Automatic)
-//            })
-//        }
-//        
-//        super.viewDidAppear(animated)
-//    }
-    
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(animated: Bool)
+    {
         super.viewWillDisappear(animated)
-        
         view.endEditing(true)
     }
     
@@ -62,6 +48,15 @@ class ParticleSettingsTableViewController: UITableViewController {
         } else {
             navigationItem.title = "Particle"
         }
+        
+        setupTableView()
+    }
+    
+    private func setupTableView()
+    {
+        tableView.registerNib(TableCell.Basic.Nib, forCellReuseIdentifier: TableCell.Basic.Identifier)
+        tableView.registerNib(TableCell.LabelTextField.Nib, forCellReuseIdentifier: TableCell.LabelTextField.Identifier)
+        tableView.registerNib(TableCell.ParticleDevice.Nib, forCellReuseIdentifier: TableCell.ParticleDevice.Identifier)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -92,28 +87,39 @@ class ParticleSettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
+        // Logged In
         if User.currentUser.isLoggedInToParticle {
             switch indexPath.section {
-            case 0:
-                let device = userDevices[indexPath.row]
-                if let cell = tableView.dequeueReusableCellWithIdentifier("DeviceCellIdentifier", forIndexPath: indexPath) as? ParticleDeviceSettingsTableViewCell {
-                    cell.nameLabel.text = device.name
-                    cell.connectedImageView.image = UIImage.imageForConnectionState(device.connected)
-                    return cell
-                } else {
+                
+            case 0: // Devices
+                
+                guard let cell = TableCell.ParticleDevice.dequeue(tableView, forIndexPath: indexPath) as? ParticleDeviceTableViewCell else {
                     return UITableViewCell()
                 }
-            case 1:
-                let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
+                
+                let device = userDevices[indexPath.row]
+                cell.nameLabel.text = device.name
+                cell.connectedImageView.image = UIImage.imageForConnectionState(device.connected)
+                return cell
+                
+            case 1: // Log Out
+                
+                let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
                 cell.textLabel?.text = "Log Out"
                 cell.textLabel?.textColor = UIColor.redColor()
                 return cell
+                
             default: return UITableViewCell()
             }
-        } else {
+        }
+        
+        // Logged Out
+        else {
             switch indexPath.section {
-            case 0:
-                    guard let cell = tableView.dequeueReusableCellWithIdentifier(LabelFieldTableViewCell.CellIdentifier, forIndexPath: indexPath) as? LabelFieldTableViewCell else {
+                
+            case 0: // Auth info
+                
+                    guard let cell = TableCell.LabelTextField.dequeue(tableView, forIndexPath: indexPath) as? LabelTextFieldTableViewCell else {
                         return UITableViewCell()
                     }
                     
@@ -126,14 +132,16 @@ class ParticleSettingsTableViewController: UITableViewController {
                         cell.label.text = "Password"
                         cell.textField.secureTextEntry = true
                         return cell
-                    default:
-                        return cell
+                    default: return cell
                     }
-            case 1:
-                let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
+                
+            case 1: // Log In
+                
+                let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
                 cell.textLabel?.text = "Log In"
                 cell.textLabel?.textColor = UIColor.blackColor()
                 return cell
+                
             default: return UITableViewCell()
             }
         }
@@ -164,8 +172,8 @@ class ParticleSettingsTableViewController: UITableViewController {
         let passwordIP = NSIndexPath(forRow: 1, inSection: 0)
         
         // Make sure cells exist
-        guard let emailCell = tableView.cellForRowAtIndexPath(emailIP) as? LabelFieldTableViewCell,
-            passwordCell = tableView.cellForRowAtIndexPath(passwordIP) as? LabelFieldTableViewCell else {
+        guard let emailCell = tableView.cellForRowAtIndexPath(emailIP) as? LabelTextFieldTableViewCell,
+            passwordCell = tableView.cellForRowAtIndexPath(passwordIP) as? LabelTextFieldTableViewCell else {
                 return
         }
         

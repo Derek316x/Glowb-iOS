@@ -20,15 +20,15 @@ class MainViewController: UIViewController,
     
     // MARK: - Life cycle
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         setup()
-        
-        registerForPreviewingWithDelegate(self, sourceView: collectionView)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool)
+    {
         if !User.currentUser.isLoggedInToParticle {
             if let viewController = storyboard?.instantiateViewControllerWithIdentifier(ParticleSettingsTableViewController.StoryboardIdentifier) as? ParticleSettingsTableViewController {
                 viewController.presentedModally = true
@@ -42,11 +42,14 @@ class MainViewController: UIViewController,
     
     // MARK: - Setup
     
-    private func setup() {
+    private func setup()
+    {
         setupCollectionView()
+        registerForPreviewingWithDelegate(self, sourceView: collectionView)
     }
     
-    private func setupCollectionView() {
+    private func setupCollectionView()
+    {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerNib(NewRelationshipCollectionViewCell.Nib, forCellWithReuseIdentifier: NewRelationshipCollectionViewCell.CellIdentifier)
@@ -56,15 +59,18 @@ class MainViewController: UIViewController,
     
     // MARK: - Collection view data source
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
+    {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
         return User.currentUser.relationships.count + 1
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    {
         if indexPath.row == User.currentUser.relationships.count {
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NewRelationshipCollectionViewCell.CellIdentifier, forIndexPath: indexPath) as? NewRelationshipCollectionViewCell {
                 
@@ -89,13 +95,15 @@ class MainViewController: UIViewController,
     
     // MARK: - Collection view delegate
     
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath)
+    {
         if let cell = cell as? RelationshipCollectionViewCell {
             cell.eagerLoad()
         }
     }
     
-    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath)
+    {
         if let cell = cell as? RelationshipCollectionViewCell {
             cell.cancelAllRequests()
         }
@@ -104,24 +112,28 @@ class MainViewController: UIViewController,
     
     // MARK: - Collection view flow layout
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    {
         return CGSize(width: view.frame.size.width, height: view.frame.size.height)
     }
     
     
     // MARK: - Declarative
     
-    private func displayNewRelationship() {
-        let viewController = NewRelationshipViewController(nibName: NewRelationshipViewController.NibName, bundle: nil)
-        let navigationController = UINavigationController(rootViewController: viewController)
-        
-        presentViewController(navigationController, animated: true, completion: nil)
+    private func displayNewRelationship()
+    {
+        if let viewController = storyboard?.instantiateViewControllerWithIdentifier(RelationshipTableViewController.StoryboardIdentifier) as? RelationshipTableViewController
+        {
+            let navigationController = UINavigationController(rootViewController: viewController)
+            presentViewController(navigationController, animated: true, completion: nil)
+        }
     }
     
     
     // MARK: - Previewing context delegate
     
-    func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController?
+    {
         guard let _ = collectionView.indexPathsForSelectedItems(),
             indexPath = collectionView.indexPathForItemAtPoint(location),
             cell = collectionView.cellForItemAtIndexPath(indexPath) else {
@@ -139,13 +151,15 @@ class MainViewController: UIViewController,
         return viewController
     }
     
-    func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+    func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController)
+    {
         
     }
     
     // MARK: - Scroll view delegate
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(scrollView: UIScrollView)
+    {
         if let cells = collectionView.visibleCells() as? [RelationshipCollectionViewCell] {
             for cell in cells {
                 cell.resetScroll()
@@ -153,7 +167,8 @@ class MainViewController: UIViewController,
         }
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
         if scrollView == collectionView && scrollView.contentOffset.x < -80 {
             performSegueWithIdentifier("SettingsSegueIdentifier", sender: self)
         }
@@ -161,7 +176,8 @@ class MainViewController: UIViewController,
     
     // MARK: - Utility
     
-    override func prefersStatusBarHidden() -> Bool {
+    override func prefersStatusBarHidden() -> Bool
+    {
         return true
     }
 }

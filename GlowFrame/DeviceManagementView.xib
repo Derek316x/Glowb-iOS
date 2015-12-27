@@ -17,7 +17,7 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffT-FL-Loo">
                     <rect key="frame" x="8" y="259" width="584" height="81"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nsf-Fl-KC8">
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nsf-Fl-KC8">
                             <rect key="frame" x="223" y="0.0" width="138" height="60.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="bowie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmC-eS-HM8">
@@ -26,7 +26,7 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="disconnected" translatesAutoresizingMaskIntoConstraints="NO" id="2aV-Qm-ZTE">
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="disconnected" translatesAutoresizingMaskIntoConstraints="NO" id="2aV-Qm-ZTE">
                                     <rect key="frame" x="130" y="30.5" width="8" height="8"/>
                                 </imageView>
                             </subviews>

@@ -18,6 +18,8 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         User.currentUser.getDevices(nil)
+        setup()
+        
         super.viewDidLoad()
     }
     
@@ -30,6 +32,17 @@ class SettingsTableViewController: UITableViewController {
         }
         
         tableView.reloadData()
+    }
+    
+    private func setup()
+    {
+        setupTableView()
+    }
+    
+    private func setupTableView()
+    {
+        tableView.registerNib(TableCell.Basic.Nib, forCellReuseIdentifier: TableCell.Basic.Identifier)
+        tableView.registerNib(TableCell.LabelTextField.Nib, forCellReuseIdentifier: TableCell.LabelTextField.Identifier)
     }
     
     // MARK: - Table view data source
@@ -50,20 +63,22 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
+        let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
+        
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
             cell.textLabel?.text = "Log In"
             if User.currentUser.isLoggedInToParticle {
                 cell.textLabel?.text = User.currentUser.loggedInParticleUsername
             }
-            return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("BasicCellIdentifier", forIndexPath: indexPath)
             cell.textLabel?.text = User.currentUser.relationships[indexPath.row].nickname
-            return cell
-        default: return UITableViewCell()
+        default: break
         }
+        
+        cell.accessoryType = .DisclosureIndicator
+        
+        return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)

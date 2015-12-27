@@ -28,6 +28,9 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     
     lazy var imageView: HighlightImageView = {
         let iv = HighlightImageView(frame: CGRectZero)
+        iv.highlightColor = UIColor.whiteColor()
+        iv.highlightAlpha = 0.2
+        iv.highlightWidth = 1.0
         iv.contentMode = .ScaleAspectFill
         iv.layer.masksToBounds = true
         iv.cornerRadius = self.CORNER_RADIUS

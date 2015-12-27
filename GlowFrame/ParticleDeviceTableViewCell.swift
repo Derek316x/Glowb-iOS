@@ -8,9 +8,13 @@
 
 import UIKit
 
-class ParticleDeviceSettingsTableViewCell: UITableViewCell {
+class ParticleDeviceTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var connectedImageView: UIImageView!
+    
+    class var CellIdentifier: String {
+        return TableCell.ParticleDevice.Identifier
+    }
     
 }

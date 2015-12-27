@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelTextFieldCellIdentifier" id="9VI-tQ-yFa" customClass="LabelTextFieldTableViewCell" customModule="GlowFrame" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="363" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9VI-tQ-yFa" id="iLx-Nm-oq0">
+                <rect key="frame" x="0.0" y="0.0" width="363" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Required" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zut-HD-HvX">
+                        <rect key="frame" x="77" y="7" width="278" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="NEc-UN-Z1n"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0x-bO-oBH">
+                        <rect key="frame" x="15" y="11" width="42" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="118" id="p3W-EY-pxv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="p3W-EY-pxv"/>
+                            </mask>
+                        </variation>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="w0x-bO-oBH" firstAttribute="leading" secondItem="iLx-Nm-oq0" secondAttribute="leading" constant="15" id="D7e-hj-u9I"/>
+                    <constraint firstItem="Zut-HD-HvX" firstAttribute="centerY" secondItem="w0x-bO-oBH" secondAttribute="centerY" id="YHc-qf-rXx"/>
+                    <constraint firstItem="Zut-HD-HvX" firstAttribute="leading" secondItem="w0x-bO-oBH" secondAttribute="trailing" constant="20" id="bPE-CD-vcd"/>
+                    <constraint firstItem="Zut-HD-HvX" firstAttribute="trailing" secondItem="iLx-Nm-oq0" secondAttribute="trailingMargin" id="lvO-Si-knK"/>
+                    <constraint firstItem="w0x-bO-oBH" firstAttribute="centerY" secondItem="iLx-Nm-oq0" secondAttribute="centerY" id="qbR-TG-dYg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label" destination="w0x-bO-oBH" id="8CM-mC-KeR"/>
+                <outlet property="textField" destination="Zut-HD-HvX" id="wbW-03-yJj"/>
+            </connections>
+            <point key="canvasLocation" x="339.5" y="276"/>
+        </tableViewCell>
+    </objects>
+</document>
