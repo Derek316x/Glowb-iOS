@@ -12,27 +12,20 @@ import Spark_SDK
 
 class Device {
     
-    let deviceID: String
-    var particleDevice:  SparkDevice?
-    var deviceSettings: DeviceSettings?
+    var particleDevice:  SparkDevice
+    var settings: DeviceSettings
     var type: String? {
-        guard let device = particleDevice else {
-            return nil
-        }
-        return [0: "Core", 6: "Photon"][device.type.rawValue]
+        return [0: "Core", 6: "Photon"][particleDevice.type.rawValue]
     }
     private var updatedAt: NSDate?
     
     var connected: Bool {
-        guard let pr = particleDevice else { return false }
-        return pr.connected
+        return particleDevice       .connected
     }
     
-    init(deviceID: String)
-    {
-        self.deviceID = deviceID
-        particleDevice = nil
-        updatedAt = nil
+    init(device: SparkDevice, settings: DeviceSettings) {
+        particleDevice = device
+        self.settings = settings
     }
 
     func updateInfo(force: Bool = false, completion: () -> Void) -> NSURLSessionTask?
@@ -51,7 +44,7 @@ class Device {
     
     private func updateParticleRepresentation(force: Bool = false, _ completion: () -> Void) -> NSURLSessionTask?
     {
-        return User.currentUser.getDevice(deviceID, force: force, completion: { (device: SparkDevice!, error: NSError!) -> Void in
+        return User.currentUser.getDevice(particleDevice.id, force: force, completion: { (device: SparkDevice!, error: NSError!) -> Void in
             if error == nil {
                 self.updatedAt = NSDate()
                 self.particleDevice = device

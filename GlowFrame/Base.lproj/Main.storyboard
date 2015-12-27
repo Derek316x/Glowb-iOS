@@ -158,7 +158,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="218"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NWw-XI-QPm" customClass="HighlightImageView" customModule="GlowFrame" customModuleProvider="target">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NWw-XI-QPm" customClass="HighlightImageView" customModule="GlowFrame" customModuleProvider="target">
                                     <rect key="frame" x="250" y="20" width="100" height="178"/>
                                     <color key="backgroundColor" red="0.59680792297979801" green="0.59680792297979801" blue="0.59680792297979801" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -180,11 +180,24 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6b-Br-uxt">
+                                    <rect key="frame" x="250" y="20" width="100" height="178"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="i1g-v8-mf3"/>
+                                        <constraint firstAttribute="height" constant="178" id="mP2-Wd-4En"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="newImageButtonTapped:" destination="TGh-C4-wTW" eventType="touchUpInside" id="6Rv-eY-E1W"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="C6b-Br-uxt" secondAttribute="bottom" constant="20" id="0cQ-hb-eAX"/>
                                 <constraint firstItem="NWw-XI-QPm" firstAttribute="leading" secondItem="1me-9C-2Kh" secondAttribute="leading" constant="15" id="OMv-5h-I6Z"/>
+                                <constraint firstItem="C6b-Br-uxt" firstAttribute="centerX" secondItem="1me-9C-2Kh" secondAttribute="centerX" id="OcG-EP-wsz"/>
                                 <constraint firstItem="NWw-XI-QPm" firstAttribute="centerX" secondItem="1me-9C-2Kh" secondAttribute="centerX" id="Rrt-eH-2Hf"/>
+                                <constraint firstItem="C6b-Br-uxt" firstAttribute="top" secondItem="1me-9C-2Kh" secondAttribute="top" constant="20" id="SpQ-na-6pi"/>
                                 <constraint firstItem="NWw-XI-QPm" firstAttribute="top" secondItem="1me-9C-2Kh" secondAttribute="top" constant="20" id="bmp-ZW-oCX"/>
                                 <constraint firstAttribute="bottom" secondItem="NWw-XI-QPm" secondAttribute="bottom" constant="20" id="rha-h3-2xF"/>
                             </constraints>
@@ -209,6 +222,9 @@
                             <outlet property="delegate" destination="TGh-C4-wTW" id="MQZ-Fh-rzl"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="previewImageView" destination="NWw-XI-QPm" id="GwH-eb-L9r"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Dg-gL-qhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

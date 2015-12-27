@@ -72,7 +72,7 @@ class SettingsTableViewController: UITableViewController {
                 cell.textLabel?.text = User.currentUser.loggedInParticleUsername
             }
         case 1:
-            cell.textLabel?.text = User.currentUser.relationships[indexPath.row].nickname
+            cell.textLabel?.text = User.currentUser.relationships[indexPath.row].name
         default: break
         }
         

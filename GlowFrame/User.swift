@@ -22,9 +22,9 @@ class User {
     
     var relationships: [Relationship] = {
         return [
-            Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267"), nickname: "Meagan"),
-            Relationship(image: UIImage(named: "hannah")!, device: Device(deviceID: "300035000547343232363230"), nickname: "Hannah"),
-            Relationship(image: UIImage(named: "boys")!, device: Device(deviceID: "300035000547343232363230"), nickname: "Andrew + Sam")
+//            Relationship(image: UIImage(named: "meagan")!, device: Device(deviceID: "53ff6d066667574818431267"), nickname: "Meagan"),
+//            Relationship(image: UIImage(named: "hannah")!, device: Device(deviceID: "300035000547343232363230"), nickname: "Hannah"),
+//            Relationship(image: UIImage(named: "boys")!, device: Device(deviceID: "300035000547343232363230"), nickname: "Andrew + Sam")
         ]
     }()
     

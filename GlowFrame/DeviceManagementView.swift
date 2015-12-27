@@ -20,10 +20,6 @@ class DeviceManagementView: UIView {
     
     func displayDevice(device: Device)
     {
-        guard let _ = device.particleDevice else {
-            showLoadingDevice()
-            return
-        }
         showLoadedDevice(device)
     }
     
@@ -31,11 +27,11 @@ class DeviceManagementView: UIView {
     
     private func showLoadedDevice(device: Device)
     {
-        deviceNameLabel.text = device.particleDevice!.name
+        deviceNameLabel.text = device.particleDevice.name
         if let type = device.type {
             deviceProductTypeLabel.text = type
         }
-        deviceStatusImageView.image = UIImage.imageForConnectionState(device.particleDevice!.connected)
+        deviceStatusImageView.image = UIImage.imageForConnectionState(device.particleDevice.connected)
         
         loadingIndicator.stopAnimating()
         deviceInformationView.hidden = false

@@ -124,6 +124,9 @@ class MainViewController: UIViewController,
     {
         if let viewController = storyboard?.instantiateViewControllerWithIdentifier(RelationshipTableViewController.StoryboardIdentifier) as? RelationshipTableViewController
         {
+            viewController.onCreateHandler = {
+                self.collectionView.reloadData()
+            }
             let navigationController = UINavigationController(rootViewController: viewController)
             presentViewController(navigationController, animated: true, completion: nil)
         }

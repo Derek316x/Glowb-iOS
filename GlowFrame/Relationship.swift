@@ -13,17 +13,17 @@ class Relationship {
     
     let image: UIImage
     let device: Device
-    let nickname: String
+    let name: String
     
-    init(image: UIImage, device: Device, nickname: String)
+    init(image: UIImage, device: Device, name: String)
     {
         self.image = image
         self.device = device
-        self.nickname = nickname
+        self.name = name
     }
     
     func activate() {
-        device.particleDevice?.callFunction("glow", withArguments: ["purple"], completion: nil)
+        device.particleDevice.callFunction("glow", withArguments: [device.settings.color], completion: nil)
     }
     
 }

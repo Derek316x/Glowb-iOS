@@ -7,18 +7,70 @@
 //
 
 import UIKit
+import Spark_SDK
 
-class RelationshipTableViewController: UITableViewController {
+struct RelationshipConstructor {
+    var image: UIImage?
+    var name: String?
+    var particleDevice: SparkDevice?
+    var settings: DeviceSettings?
+    
+    
+    // TODO: Validation
+    
+    func build() -> Relationship? {
+        
+        print(particleDevice)
+        print(image)
+        print(name)
+        print(settings)
+        
+        guard let particleDevice = particleDevice,
+            image = image,
+            settings = settings,
+            name = name else
+        {
+                return nil
+        }
+        
+        let device = Device(device: particleDevice, settings: settings)
+        let relationship = Relationship(image: image, device: device, name: name)
+        
+        return relationship
+    }
+}
+
+class RelationshipTableViewController: UITableViewController,
+    UINavigationControllerDelegate,
+    UIImagePickerControllerDelegate,
+    UITextFieldDelegate {
+    
+    var constructor = RelationshipConstructor()
+    var devices = User.currentUser.devices.sort { $0.name < $1.name }
+    var onCreateHandler: (() -> Void)?
+    
+    @IBOutlet weak var previewImageView: HighlightImageView!
     
     class var StoryboardIdentifier: String {
-         return "RelationshipTableViewIdentifier"
+        return "RelationshipTableViewIdentifier"
     }
+    
+    
+    // MARK: - Life cycle
     
     override func viewDidLoad()
     {
         setup()
         super.viewDidLoad()
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.endEditing(true)
+    }
+    
+    
+    // MARK: - Setup
     
     private func setup()
     {
@@ -35,12 +87,45 @@ class RelationshipTableViewController: UITableViewController {
     private func setupNavigationBar()
     {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "save")
     }
     
-    @objc private func dismiss() {
+    
+    // MARK: - Bar button actions
+    
+    @objc private func dismiss()
+    {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
+    @objc private func save()
+    {
+        guard let relationship = constructor.build() else {
+            print("invalid relationship")
+            return
+        }
+        User.currentUser.relationships.append(relationship)
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        if let handler = onCreateHandler {
+            handler()
+        }
+    }
+    
+    
+    // MARK: - IBAction
+    
+    @IBAction func newImageButtonTapped(sender: AnyObject)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .PhotoLibrary
+        picker.view.backgroundColor = UIColor.whiteColor()
+        
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,13 +148,14 @@ class RelationshipTableViewController: UITableViewController {
             if let cell = TableCell.LabelTextField.dequeue(tableView, forIndexPath: indexPath) as? LabelTextFieldTableViewCell {
                 cell.label.text = "Name"
                 cell.textField.placeholder = "Required"
+                cell.selectionStyle = .None
+                cell.textField.delegate = self
                 return cell
             }
             return UITableViewCell()
         case 1:
             let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
-            let device = Array(User.currentUser.devices)[indexPath.row];
-            cell.textLabel?.text = device.name
+            cell.textLabel?.text = devices[indexPath.row].name
             return cell
         case 2:
             let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
@@ -92,6 +178,46 @@ class RelationshipTableViewController: UITableViewController {
         case 2: return "Color"
         default: return nil
         }
+    }
+    
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            constructor.particleDevice = devices[indexPath.row]
+        }
+        
+        if indexPath.section == 2 {
+            let color: String = ["blue", "red", "purple"][indexPath.row]
+            constructor.settings = DeviceSettings(color: color)
+        }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    
+    // MARK: - Image picker controller delegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
+    {
+        previewImageView.image = image
+        constructor.image = image
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    // MARK: - Text field delegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        constructor.name = textField.text
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        constructor.name = textField.text
+        textField.resignFirstResponder()
     }
 
 }

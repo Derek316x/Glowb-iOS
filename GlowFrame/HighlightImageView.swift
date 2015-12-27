@@ -62,6 +62,7 @@ class HighlightImageView: DesignableImageView {
     
     private func setup()
     {
+        clipsToBounds = true
         layer.addSublayer(highlightLayer)
     }
     
