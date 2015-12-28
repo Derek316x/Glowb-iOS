@@ -49,7 +49,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return 2
+        return User.currentUser.relationships.count > 0 ? 2 : 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int

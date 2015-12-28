@@ -156,8 +156,9 @@ class RelationshipTableViewController: UITableViewController,
                 cell.theme = .Dark
                 cell.label.text = "Name"
                 cell.textField.placeholder = "Required"
-                cell.selectionStyle = .None
                 cell.textField.delegate = self
+                cell.textField.keyboardAppearance = .Dark
+                cell.selectionStyle = .None
                 return cell
             }
             return UITableViewCell()

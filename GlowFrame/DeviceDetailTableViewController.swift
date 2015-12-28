@@ -53,14 +53,14 @@ class DeviceDetailTableViewController: UITableViewController,
         }
         
         device.rename(newName) { (error: NSError?) -> Void in
-            guard error != nil else { return }
+            guard error == nil else { return }
             self.navigationController?.popViewControllerAnimated(true)
         }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return 2
+        return (device.functions?.count ?? 0) == 0 ? 1 : 2
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
