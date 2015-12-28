@@ -1,3 +1,5 @@
 language: swift
 osx_image: xcode7
 podfile: Podfile
+xcode_workspace: GlowFrame.xcworkspace
+xcode_sceme: GlowFrameTests

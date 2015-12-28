@@ -12,14 +12,7 @@ import Alamofire
 class ParticleAPIManager {
     
     private class var defaultParams: [String: String] {
-        return ["access_token" : accessToken]
-    }
-    
-    private class var accessToken: String! {
-        let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist")!
-        let plist = NSDictionary(contentsOfFile: path)!
-        let token = plist["ParticleAccessToken"] as! String
-        return token
+        return ["":""]
     }
     
     class func fetchDeviceInfo(deviceID: String, completion: (info: [String: AnyObject]) -> Void) -> NSURLSessionTask
