@@ -11,11 +11,12 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 extension Relationship {
 
-    @NSManaged var image: NSObject?
-    @NSManaged var name: String?
-    @NSManaged var device: Device?
+    @NSManaged var image: UIImage
+    @NSManaged var name: String
+    @NSManaged var device: Device
 
 }

@@ -9,13 +9,13 @@
 import Foundation
 import Alamofire
 import Spark_SDK
+import CoreData
 
-
-class Device {
+class Device: NSManagedObject {
     
-    private var updatedAt: NSDate?
-    var particleDevice:  SparkDevice
-    var color: String
+    class var EntityName: String {
+        return "Device"
+    }
     
     var type: String? {
         return [0: "Core", 6: "Photon"][particleDevice.type.rawValue]
@@ -27,6 +27,11 @@ class Device {
     
     init(device: SparkDevice, color: String)
     {
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = delegate.managedObjectContext
+        let entity = NSEntityDescription.entityForName(Device.EntityName, inManagedObjectContext: context)!
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        
         particleDevice = device
         self.color = color
     }

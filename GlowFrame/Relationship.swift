@@ -8,15 +8,21 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-class Relationship {
+class Relationship: NSManagedObject {
     
-    let image: UIImage
-    let device: Device
-    let name: String
+    class var EntityName: String {
+        return "Relationship"
+    }
     
     init(image: UIImage, device: Device, name: String)
     {
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = delegate.managedObjectContext
+        let entity = NSEntityDescription.entityForName(Relationship.EntityName, inManagedObjectContext: context)!
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        
         self.image = image
         self.device = device
         self.name = name

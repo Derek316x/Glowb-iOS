@@ -11,12 +11,13 @@
 
 import Foundation
 import CoreData
+import Spark_SDK
 
 extension Device {
 
     @NSManaged var updatedAt: NSDate?
-    @NSManaged var particleDevice: NSObject?
-    @NSManaged var relationship: Relationship?
-    @NSManaged var settings: DeviceSettings?
+    @NSManaged var particleDevice: SparkDevice
+    @NSManaged var color: String
+    @NSManaged var relationship: Relationship
 
 }
