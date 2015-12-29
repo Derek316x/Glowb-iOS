@@ -15,7 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        setupGlobalUI()
         return true
+    }
+    
+    
+    private func setupGlobalUI()
+    {
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().translucent = true
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
     }
     
     // MARK: - Core Data stack

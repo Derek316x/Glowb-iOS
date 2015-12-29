@@ -52,6 +52,9 @@ class RelationshipTableViewController: UITableViewController,
     
     var constructor = RelationshipConstructor()
     var devices = User.currentUser.devices.sort { $0.name < $1.name }
+    var presentedModally: Bool = false
+    
+    var relationship: Relationship?
     
     @IBOutlet weak var previewImageView: HighlightImageView!
     
@@ -97,7 +100,9 @@ class RelationshipTableViewController: UITableViewController,
     
     private func setupNavigationBar()
     {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
+        if presentedModally {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "save")
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)

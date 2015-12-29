@@ -37,6 +37,16 @@ class SettingsTableViewController: UITableViewController {
     private func setup()
     {
         setupTableView()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar()
+    {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.translucent = true
+        
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     private func setupTableView()
@@ -63,7 +73,12 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
+        guard let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath) as? BasicTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.theme = .Dark
+        cell.selectionStyle = .Gray
         
         switch indexPath.section {
         case 0:
@@ -98,6 +113,12 @@ class SettingsTableViewController: UITableViewController {
             if let viewController = storyboard?.instantiateViewControllerWithIdentifier(ParticleSettingsTableViewController.StoryboardIdentifier) as? ParticleSettingsTableViewController {
                 navigationController?.pushViewController(viewController, animated: true)
             }
+        } else if indexPath.section == 1 {
+            let relationship = User.currentUser.relationships[indexPath.row]
+            if let viewController = storyboard?.instantiateViewControllerWithIdentifier(RelationshipTableViewController.StoryboardIdentifier) as? RelationshipTableViewController {
+                    viewController.relationship = relationship
+                    navigationController?.pushViewController(viewController, animated: true)
+            }
         }
     }
     
@@ -112,6 +133,10 @@ class SettingsTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }
 

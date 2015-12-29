@@ -59,6 +59,9 @@ class ParticleSettingsTableViewController: UITableViewController {
         tableView.registerNib(TableCell.Basic.Nib, forCellReuseIdentifier: TableCell.Basic.Identifier)
         tableView.registerNib(TableCell.LabelTextField.Nib, forCellReuseIdentifier: TableCell.LabelTextField.Identifier)
         tableView.registerNib(TableCell.ParticleDevice.Nib, forCellReuseIdentifier: TableCell.ParticleDevice.Identifier)
+        
+        tableView.backgroundColor = UIColor.blackColor()
+        tableView.separatorStyle = .None
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -99,13 +102,18 @@ class ParticleSettingsTableViewController: UITableViewController {
                     return UITableViewCell()
                 }
                 
+                cell.theme = .Dark
                 cell.accessoryType = .DisclosureIndicator
                 cell.device = devices[indexPath.row]
                 return cell
                 
             case 1: // Log Out
                 
-                let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
+                guard let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath) as? BasicTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+                cell.theme = .Dark
                 cell.textLabel?.text = "Log Out"
                 cell.textLabel?.textColor = UIColor.redColor()
                 return cell
@@ -124,6 +132,7 @@ class ParticleSettingsTableViewController: UITableViewController {
                         return UITableViewCell()
                     }
                     cell.selectionStyle = .None
+                    cell.theme = .Dark
                     
                     switch indexPath.row {
                     case 0:
@@ -139,7 +148,11 @@ class ParticleSettingsTableViewController: UITableViewController {
                 
             case 1: // Log In
                 
-                let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
+                guard let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath) as? BasicTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+                cell.theme = .Dark
                 cell.textLabel?.text = "Log In"
                 cell.textLabel?.textColor = UIColor.blackColor()
                 return cell
@@ -225,5 +238,9 @@ class ParticleSettingsTableViewController: UITableViewController {
         set.addIndex(0)
         set.addIndex(1)
         tableView.reloadSections(set, withRowAnimation: .Automatic)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }

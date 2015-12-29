@@ -34,6 +34,9 @@ class DeviceDetailTableViewController: UITableViewController,
     {
         tableView.registerNib(TableCell.Basic.Nib, forCellReuseIdentifier: TableCell.Basic.Identifier)
         tableView.registerNib(TableCell.LabelTextField.Nib, forCellReuseIdentifier: TableCell.LabelTextField.Identifier)
+        
+        tableView.backgroundColor = UIColor.blackColor()
+        tableView.separatorStyle = .None
     }
     
     private func setupNavigationBar()
@@ -76,16 +79,21 @@ class DeviceDetailTableViewController: UITableViewController,
     {
         switch indexPath.section {
         case 0:
-            if let cell = TableCell.LabelTextField.dequeue(tableView, forIndexPath: indexPath) as? LabelTextFieldTableViewCell {
-                cell.label.text = "Name"
-                cell.textField.text = device.name
-                cell.textField.delegate = self
-                cell.textField.clearButtonMode = .WhileEditing
-                return cell
+            guard let cell = TableCell.LabelTextField.dequeue(tableView, forIndexPath: indexPath) as? LabelTextFieldTableViewCell else {
+                return UITableViewCell()
             }
-            return UITableViewCell()
+            cell.theme = .Dark
+            cell.label.text = "Name"
+            cell.textField.text = device.name
+            cell.textField.backgroundColor = UIColor.blackColor()
+            cell.textField.delegate = self
+            cell.textField.clearButtonMode = .WhileEditing
+            return cell
         case 1:
-            let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath)
+            guard let cell = TableCell.Basic.dequeue(tableView, forIndexPath: indexPath) as? BasicTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.theme = .Dark
             cell.selectionStyle = .None
             cell.textLabel?.text = device.functions?[indexPath.row] as? String
             return cell
@@ -106,6 +114,13 @@ class DeviceDetailTableViewController: UITableViewController,
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    // MARK: - Utility
+    
+    override func prefersStatusBarHidden() -> Bool {
         return true
     }
 

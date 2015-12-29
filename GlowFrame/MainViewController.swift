@@ -130,6 +130,7 @@ class MainViewController: UIViewController,
     {
         if let viewController = storyboard?.instantiateViewControllerWithIdentifier(RelationshipTableViewController.StoryboardIdentifier) as? RelationshipTableViewController
         {
+            viewController.presentedModally = true
             let navigationController = UINavigationController(rootViewController: viewController)
             presentViewController(navigationController, animated: true, completion: nil)
         }
