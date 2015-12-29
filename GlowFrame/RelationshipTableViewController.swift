@@ -150,7 +150,11 @@ class RelationshipTableViewController: UITableViewController,
                 return
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.dismissViewControllerAnimated(true, completion: nil)
+                if self.presentedModally {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
             })
         }
     }
