@@ -21,23 +21,13 @@ class Device: NSManagedObject {
         return particleDevice.connected
     }
     
-    
-    /* something like this */
-    
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
-        refresh()
-    }
-    
     func refresh()
     {
-        User.currentUser.particleAccount.getDevice(particleDevice.id) { (device: SparkDevice?, error: NSError?) -> Void in
-            if let device = device {
-                self.particleDevice = device
-                do {
-                    try self.save()
-                } catch _ {}
-            }
+        particleDevice.refresh { (error: NSError?) -> Void in
+            guard error == nil else { return }
+            do {
+                try self.save()
+            } catch {}
         }
     }
     

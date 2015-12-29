@@ -56,6 +56,11 @@ class User: NSObject, NSFetchedResultsControllerDelegate {
         guard let controller = fetchedResultsController else { return }
         do {
             try controller.performFetch()
+            let devices = relationships.map { $0.device }
+            for device in devices {
+                self.devices.insert(device.particleDevice)
+                device.refresh()
+            }
         } catch _ {}
     }
     

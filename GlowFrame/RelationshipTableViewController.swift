@@ -17,7 +17,7 @@ struct RelationshipConstructor {
     
     // TODO: Validation
     
-    func build() -> Relationship?
+    func build(existing: Relationship? = nil) -> Relationship?
     {
         guard let particleDevice = self.particleDevice,
             image = self.image,
@@ -26,21 +26,29 @@ struct RelationshipConstructor {
                 return nil
         }
         
-        guard let device = Device.create(particleDevice, color: color),
-            relationship = Relationship.create(image, device: device, name: name) else {
+        if let relationship = existing {
+            relationship.image = image
+            relationship.device.color = color
+            relationship.name = name
+            relationship.device.particleDevice = particleDevice
+            
+            do {
+                try relationship.save()
+                return relationship
+            } catch _ {
                 return nil
-        }
-        
-        guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
-            context = delegate.managedObjectContext else {
+            }
+        } else {
+            guard let device = Device.create(particleDevice, color: color),
+                relationship = Relationship.create(image, device: device, name: name) else {
+                    return nil
+            }
+            do {
+                try relationship.save()
+                return relationship
+            } catch _ {
                 return nil
-        }
-        
-        do {
-            try context.save()
-            return relationship
-        } catch _ {
-            return nil
+            }
         }
     }
 }
@@ -50,11 +58,22 @@ class RelationshipTableViewController: UITableViewController,
     UIImagePickerControllerDelegate,
     UITextFieldDelegate {
     
+    @IBOutlet weak var headerImageView: HighlightImageView!
+    
     var constructor = RelationshipConstructor()
+    
     var devices = User.currentUser.devices.sort { $0.name < $1.name }
+    
     var presentedModally: Bool = false
     
-    var relationship: Relationship?
+    var relationship: Relationship? {
+        didSet {
+            constructor.name = relationship!.name
+            constructor.particleDevice = relationship!.device.particleDevice
+            constructor.image = relationship!.image
+            constructor.color = relationship!.device.color
+        }
+    }
     
     @IBOutlet weak var previewImageView: HighlightImageView!
     
@@ -71,7 +90,8 @@ class RelationshipTableViewController: UITableViewController,
         super.viewDidLoad()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(animated: Bool)
+    {
         super.viewWillDisappear(animated)
         view.endEditing(true)
     }
@@ -89,6 +109,8 @@ class RelationshipTableViewController: UITableViewController,
             self.tableView.reloadData()
             self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
         }
+        
+        headerImageView.image = relationship?.image
     }
     
     private func setupTableView()
@@ -123,7 +145,7 @@ class RelationshipTableViewController: UITableViewController,
     @objc private func save()
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
-            guard let _ = self.constructor.build() else {
+            guard let _ = self.constructor.build(self.relationship) else {
                 print("invalid relationship")
                 return
             }
@@ -153,11 +175,13 @@ class RelationshipTableViewController: UITableViewController,
     
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
         return 3
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         switch section {
         case 0: return 1
         case 1: return devices.count
@@ -166,7 +190,8 @@ class RelationshipTableViewController: UITableViewController,
         }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
         
         switch indexPath.section {
         case 0:
@@ -174,6 +199,7 @@ class RelationshipTableViewController: UITableViewController,
                 cell.theme = .Dark
                 cell.label.text = "Name"
                 cell.textField.placeholder = "Required"
+                cell.textField.text = relationship?.name
                 cell.textField.delegate = self
                 cell.textField.keyboardAppearance = .Dark
                 cell.selectionStyle = .None
@@ -204,7 +230,8 @@ class RelationshipTableViewController: UITableViewController,
 
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
         switch section {
         case 0: return nil
         case 1: return "Device"
@@ -216,7 +243,8 @@ class RelationshipTableViewController: UITableViewController,
     
     // MARK: - Table view delegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
         if indexPath.section == 1 {
             let device = devices[indexPath.row]
             guard device.connected else {
@@ -245,13 +273,15 @@ class RelationshipTableViewController: UITableViewController,
     
     // MARK: - Text field delegate
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
         constructor.name = textField.text
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(textField: UITextField)
+    {
         constructor.name = textField.text
         textField.resignFirstResponder()
     }
@@ -259,14 +289,16 @@ class RelationshipTableViewController: UITableViewController,
     
     // MARK: - Scroll view delegate
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(scrollView: UIScrollView)
+    {
         view.endEditing(true)
     }
     
     
     // MARK: - Utility
     
-    override func prefersStatusBarHidden() -> Bool {
+    override func prefersStatusBarHidden() -> Bool
+    {
         return true
     }
 }

@@ -210,6 +210,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="headerImageView" destination="NWw-XI-QPm" id="tRr-sF-ebL"/>
                         <outlet property="previewImageView" destination="NWw-XI-QPm" id="GwH-eb-L9r"/>
                     </connections>
                 </tableViewController>

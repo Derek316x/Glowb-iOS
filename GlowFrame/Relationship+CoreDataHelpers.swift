@@ -48,4 +48,14 @@ extension Relationship {
             completion?(false)
         }
     }
+    
+    func save() throws
+    {
+        guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
+            context = delegate.managedObjectContext else {
+            return
+        }
+        
+        try context.save()
+    }
 }
