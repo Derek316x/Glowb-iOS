@@ -15,7 +15,7 @@ class Device {
     
     private var updatedAt: NSDate?
     var particleDevice:  SparkDevice
-    var settings: DeviceSettings
+    var color: String
     var type: String? {
         return [0: "Core", 6: "Photon"][particleDevice.type.rawValue]
     }
@@ -23,10 +23,10 @@ class Device {
         return particleDevice.connected
     }
     
-    init(device: SparkDevice, settings: DeviceSettings)
+    init(device: SparkDevice, color: String)
     {
         particleDevice = device
-        self.settings = settings
+        self.color = color
     }
 
     func updateInfo(force: Bool = false, completion: (() -> Void)?) -> NSURLSessionTask?

@@ -23,7 +23,7 @@ class Relationship {
     }
     
     func activate() {
-        device.particleDevice.callFunction("glow", withArguments: [device.settings.color], completion: nil)
+        device.particleDevice.callFunction("glow", withArguments: [device.color], completion: nil)
     }
     
 }

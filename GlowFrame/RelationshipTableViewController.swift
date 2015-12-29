@@ -13,7 +13,7 @@ struct RelationshipConstructor {
     var image: UIImage?
     var name: String?
     var particleDevice: SparkDevice?
-    var settings: DeviceSettings?
+    var color: String?
     
     
     // TODO: Validation
@@ -22,12 +22,12 @@ struct RelationshipConstructor {
     {
         guard let particleDevice = particleDevice,
             image = image,
-            settings = settings,
+            color = color,
             name = name else {
                 return nil
         }
         
-        let device = Device(device: particleDevice, settings: settings)
+        let device = Device(device: particleDevice, color: color)
         let relationship = Relationship(image: image, device: device, name: name)
         
         return relationship
@@ -208,8 +208,7 @@ class RelationshipTableViewController: UITableViewController,
         }
         
         if indexPath.section == 2 {
-            let color: String = ["blue", "red", "purple"][indexPath.row]
-            constructor.settings = DeviceSettings(color: color)
+            constructor.color = ["blue", "red", "purple"][indexPath.row]
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
