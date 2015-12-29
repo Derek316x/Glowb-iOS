@@ -119,10 +119,22 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let relationship = User.currentUser.relationships[indexPath.row]
-            Relationship.deleteEntity(relationship) {
-                self.tableView.reloadData()
+            Relationship.delete(relationship) { (success: Bool) -> Void in
+                if success {
+                    self.tableView.reloadData()
+                } else {
+                    self.throwDeleteError()
+                }
             }
         }
+    }
+    
+    private func throwDeleteError()
+    {
+        let alert = UIAlertController(title: "Error", message: "There was a problem deleting the relationship.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     override func prefersStatusBarHidden() -> Bool {

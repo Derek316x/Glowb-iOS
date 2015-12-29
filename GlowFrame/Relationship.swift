@@ -12,6 +12,18 @@ import CoreData
 
 class Relationship: NSManagedObject {
     
+    func activate()
+    {
+        device.particleDevice.callFunction("glow", withArguments: [device.color], completion: nil)
+    }
+    
+}
+
+
+// Core Data
+
+extension Relationship {
+    
     class var EntityName: String {
         return "Relationship"
     }
@@ -34,12 +46,7 @@ class Relationship: NSManagedObject {
         return relationship
     }
     
-    func activate()
-    {
-        device.particleDevice.callFunction("glow", withArguments: [device.color], completion: nil)
-    }
-    
-    class func deleteEntity(relationship: Relationship, completion: () -> Void)
+    class func delete(relationship: Relationship, completion: ((Bool) -> Void)?)
     {
         guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
             context = delegate.managedObjectContext else {
@@ -49,8 +56,9 @@ class Relationship: NSManagedObject {
         context.deleteObject(relationship)
         do {
             try context.save()
-            completion()
-        } catch {}
+            completion?(true)
+        } catch {
+            completion?(false)
+        }
     }
-    
 }

@@ -25,6 +25,13 @@ class Device: NSManagedObject {
         return particleDevice.connected
     }
     
+}
+
+
+// Core Data
+
+extension Device {
+    
     class func create(particle: SparkDevice, color: String) -> Device?
     {
         guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
@@ -39,4 +46,5 @@ class Device: NSManagedObject {
         
         return device
     }
+    
 }
