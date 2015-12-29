@@ -22,7 +22,8 @@ class Relationship {
         self.name = name
     }
     
-    func activate() {
+    func activate()
+    {
         device.particleDevice.callFunction("glow", withArguments: [device.color], completion: nil)
     }
     

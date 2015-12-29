@@ -16,9 +16,11 @@ class Device {
     private var updatedAt: NSDate?
     var particleDevice:  SparkDevice
     var color: String
+    
     var type: String? {
         return [0: "Core", 6: "Photon"][particleDevice.type.rawValue]
     }
+    
     var connected: Bool {
         return particleDevice.connected
     }

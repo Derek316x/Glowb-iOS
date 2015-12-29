@@ -334,10 +334,10 @@
 		8DD708331C15FB88006570B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */,
 				8D710E921C2C82190076DEBF /* User.swift */,
-				8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */,
+				8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */,
 				8D37D2E21C15EC0700B8E148 /* Device.swift */,
+				8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
