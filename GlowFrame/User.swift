@@ -13,10 +13,13 @@ import CoreData
 class User: NSObject, NSFetchedResultsControllerDelegate {
     
     static let currentUser = User()
+    
     let particleAccount = SparkCloud.sharedInstance()
+    
     var isLoggedInToParticle: Bool {
         return particleAccount.isLoggedIn
     }
+    
     var loggedInParticleUsername: String! {
         return particleAccount.loggedInUsername
     }
@@ -51,35 +54,9 @@ class User: NSObject, NSFetchedResultsControllerDelegate {
         super.init()
         
         guard let controller = fetchedResultsController else { return }
-        
         do {
             try controller.performFetch()
         } catch _ {}
-    }
-    
-    func getDevice(deviceID: String, force: Bool = false, completion: ((SparkDevice?, NSError?) -> Void)?) -> NSURLSessionDataTask?
-    {
-        if !force {
-            // Short circuit if we already have the device
-            let equal = devices.filter { $0.id == deviceID }
-            guard equal.count == 0 else {
-                completion?(equal.first, nil)
-                return nil
-            }
-        }
-        
-        return particleAccount.getDevice(deviceID) { (device: SparkDevice?, error: NSError?) -> Void in
-            if !force {
-                if let device = device {
-                    let equal = self.devices.filter { $0.id == deviceID }
-                    if equal.count == 0 {
-                        self.devices.insert(device)
-                    }
-                }
-            }
-            
-            completion?(device, error)
-        }
     }
     
     func getDevices(completion: (([SparkDevice]?, NSError?) -> Void)?) -> NSURLSessionDataTask?
@@ -92,6 +69,8 @@ class User: NSObject, NSFetchedResultsControllerDelegate {
         })
     }
     
+    
+    // Fetched results controller delegate
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
     {
