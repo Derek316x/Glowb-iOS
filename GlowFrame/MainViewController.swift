@@ -17,19 +17,17 @@ class MainViewController: UIViewController,
     @IBOutlet weak var collectionView: UICollectionView!
     
     
-    
     // MARK: - Life cycle
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         setup()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         super.viewWillAppear(animated)
-        
         collectionView.reloadData()
     }
     
@@ -96,23 +94,6 @@ class MainViewController: UIViewController,
         }
         
         return UICollectionViewCell()
-    }
-    
-    
-    // MARK: - Collection view delegate
-    
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath)
-    {
-        if let cell = cell as? RelationshipCollectionViewCell {
-            cell.eagerLoad()
-        }
-    }
-    
-    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath)
-    {
-        if let cell = cell as? RelationshipCollectionViewCell {
-            cell.cancelAllRequests()
-        }
     }
     
     

@@ -141,7 +141,11 @@ class RelationshipTableViewController: UITableViewController,
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .PhotoLibrary
+        
         picker.view.backgroundColor = UIColor.whiteColor()
+        picker.navigationBar.translucent = false
+        picker.navigationBar.tintColor = UIColor.blackColor()
+        picker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
         
         presentViewController(picker, animated: true, completion: nil)
     }

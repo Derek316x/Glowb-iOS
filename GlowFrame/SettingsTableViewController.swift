@@ -37,16 +37,6 @@ class SettingsTableViewController: UITableViewController {
     private func setup()
     {
         setupTableView()
-        setupNavigationBar()
-    }
-    
-    private func setupNavigationBar()
-    {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.translucent = true
-        
-        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     private func setupTableView()

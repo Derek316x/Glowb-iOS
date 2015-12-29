@@ -39,30 +39,4 @@ class Device: NSManagedObject {
         
         return device
     }
-
-    func updateInfo(force: Bool = false, completion: (() -> Void)?) -> NSURLSessionTask?
-    {
-        // Don't reload unless it's been at least 2 minutes. Arbitrary.
-        if !force {
-            if let updatedAt = updatedAt {
-                guard NSDate().timeIntervalSinceDate(updatedAt) > 60 * 2 else {
-                    return nil
-                }
-            }
-        }
-        
-        return updateParticleRepresentation(force, completion)
-    }
-    
-    private func updateParticleRepresentation(force: Bool = false, _ completion: (() -> Void)?) -> NSURLSessionTask?
-    {
-        return User.currentUser.getDevice(particleDevice.id, force: force, completion: { (device: SparkDevice?, error: NSError?) -> Void in
-            if let device = device {
-                self.updatedAt = NSDate()
-                self.particleDevice = device
-            }
-            completion?()
-        })
-    }
-    
 }

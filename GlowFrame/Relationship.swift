@@ -34,25 +34,6 @@ class Relationship: NSManagedObject {
         return relationship
     }
     
-    class func fetchAllObjects() -> [Relationship]?
-    {
-        guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
-            context = delegate.managedObjectContext else {
-                return nil
-        }
-        
-        let request = NSFetchRequest(entityName: Relationship.EntityName)
-        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)];
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try controller.performFetch()
-            return controller.fetchedObjects as? [Relationship]
-        } catch _ {
-            return nil
-        }
-    }
-    
     func activate()
     {
         device.particleDevice.callFunction("glow", withArguments: [device.color], completion: nil)

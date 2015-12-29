@@ -12,7 +12,7 @@ import Spark_SDK
 class ParticleSettingsTableViewController: UITableViewController {
     
     var presentedModally: Bool = false
-    var devices = User.currentUser.devices.sort { $0.name < $1.name }
+    let devices = User.currentUser.devices.sort { $0.name < $1.name }
     
     class var StoryboardIdentifier: String {
         return "ParticleSettingsIdentifier"
@@ -21,7 +21,6 @@ class ParticleSettingsTableViewController: UITableViewController {
     override func viewDidLoad()
     {
         setup()
-        
         super.viewDidLoad()
     }
     
@@ -30,11 +29,9 @@ class ParticleSettingsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
-        
         if let ip = tableView.indexPathForSelectedRow {
             tableView.deselectRowAtIndexPath(ip, animated: true)
         }
-        
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -131,6 +128,7 @@ class ParticleSettingsTableViewController: UITableViewController {
                     guard let cell = TableCell.LabelTextField.dequeue(tableView, forIndexPath: indexPath) as? LabelTextFieldTableViewCell else {
                         return UITableViewCell()
                     }
+                    
                     cell.selectionStyle = .None
                     cell.theme = .Dark
                     
@@ -138,10 +136,12 @@ class ParticleSettingsTableViewController: UITableViewController {
                     case 0:
                         cell.label.text = "Email Address"
                         cell.textField.keyboardType = .EmailAddress
+                        cell.textField.keyboardAppearance = .Dark
                         return cell
                     case 1:
                         cell.label.text = "Password"
                         cell.textField.secureTextEntry = true
+                        cell.textField.keyboardAppearance = .Dark
                         return cell
                     default: return cell
                     }
@@ -154,7 +154,6 @@ class ParticleSettingsTableViewController: UITableViewController {
                 
                 cell.theme = .Dark
                 cell.textLabel?.text = "Log In"
-                cell.textLabel?.textColor = UIColor.blackColor()
                 return cell
                 
             default: return UITableViewCell()
@@ -185,8 +184,7 @@ class ParticleSettingsTableViewController: UITableViewController {
                     viewController.device = device
                     navigationController?.pushViewController(viewController, animated: true)
                 }
-            case 1: // Log Out
-                logOutParticleUser()
+            case 1: logOutParticleUser()
             default: return
             }
         } else {
@@ -214,17 +212,29 @@ class ParticleSettingsTableViewController: UITableViewController {
         }
         
         User.currentUser.particleAccount.loginWithUser(emailText, password: passwordText) { (error: NSError?) -> Void in
-            if self.presentedModally {
-                self.dismissViewControllerAnimated(true, completion: nil)
+            if let _ = error {
+                self.throwLoginError()
             } else {
-                self.tableView.reloadData()
-                let set = NSMutableIndexSet()
-                set.addIndex(0)
-                self.tableView.reloadSections(set, withRowAnimation: .Automatic)
-                
-                self.navigationItem.title = User.currentUser.loggedInParticleUsername
+                if self.presentedModally {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    self.tableView.reloadData()
+                    let set = NSMutableIndexSet()
+                    set.addIndex(0)
+                    self.tableView.reloadSections(set, withRowAnimation: .Automatic)
+                    
+                    self.navigationItem.title = User.currentUser.loggedInParticleUsername
+                }
             }
         }
+    }
+    
+    private func throwLoginError()
+    {
+        let alert = UIAlertController(title: "Error", message: "There was a problem while logging in. Please try again", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(action)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     private func logOutParticleUser()

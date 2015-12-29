@@ -155,33 +155,8 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     
     // MARK: - Imperative
     
-    func eagerLoad() {
-        updateDeviceInfo()
-    }
-    
-    func cancelAllRequests() {
-        updateTask?.cancel()
-        _updatingDevice = false
-    }
-    
     func resetScroll() {
         scrollView.setContentOffset(CGPoint(x: 0, y: frame.size.height - VISIBLE_IMAGE_PORTION), animated: true)
-    }
-    
-    private func updateDeviceInfo(force: Bool = false) {
-        
-        guard !_updatingDevice else { return }
-        _updatingDevice = true
-        
-        updateTask = relationship?.device.updateInfo(force, completion: { () -> Void in
-            self.deviceDetailView.displayDevice(self.relationship!.device)
-            self._updatingDevice = false
-            self.updateTask = nil
-        })
-        
-        if updateTask == nil {
-            _updatingDevice = false
-        }
     }
     
     
@@ -193,14 +168,5 @@ class RelationshipCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         
         overlayView.alpha = (1 - alpha) * 0.8
         background.alpha = min(0.99, 1 - alpha)
-        
-        updateDeviceInfo()
     }
-    
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y < -VISIBLE_IMAGE_PORTION {
-            updateDeviceInfo(true)
-        }
-    }
-    
 }

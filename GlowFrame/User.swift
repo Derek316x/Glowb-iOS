@@ -36,15 +36,12 @@ class User: NSObject, NSFetchedResultsControllerDelegate {
     }()
     
     var relationships: [Relationship] {
-        guard let controller = fetchedResultsController else {
+        guard let controller = fetchedResultsController,
+            objects = controller.fetchedObjects as? [Relationship] else {
             return [Relationship]()
         }
         
-        if let objects = controller.fetchedObjects as? [Relationship] {
-            return objects
-        }
-        
-        return [Relationship]()
+        return objects
     }
     
     var devices = Set<SparkDevice>()
@@ -53,25 +50,11 @@ class User: NSObject, NSFetchedResultsControllerDelegate {
     {
         super.init()
         
-        guard let controller = fetchedResultsController else {
-            return
-        }
+        guard let controller = fetchedResultsController else { return }
         
         do {
             try controller.performFetch()
         } catch _ {}
-        
-        setup()
-    }
-    
-    private func setup()
-    {
-        loadSavedRelationships()
-    }
-    
-    private func loadSavedRelationships()
-    {
-        
     }
     
     func getDevice(deviceID: String, force: Bool = false, completion: ((SparkDevice?, NSError?) -> Void)?) -> NSURLSessionDataTask?
@@ -112,7 +95,7 @@ class User: NSObject, NSFetchedResultsControllerDelegate {
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
     {
-       // Not sure, but implementing this method updates `fetchedObjects`
+       // Not sure why, but implementing this method updates `fetchedObjects`
     }
     
 }
