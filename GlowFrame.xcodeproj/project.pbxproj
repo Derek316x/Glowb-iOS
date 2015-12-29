@@ -38,6 +38,8 @@
 		8DC9B2061C2F723C00066065 /* BasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC9B2051C2F723C00066065 /* BasicTableViewCell.xib */; };
 		8DC9B2081C2F725F00066065 /* BasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC9B2071C2F725F00066065 /* BasicTableViewCell.swift */; };
 		8DC9B20B1C2F728B00066065 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC9B20A1C2F728B00066065 /* TableCell.swift */; };
+		8DD234D21C32FFB100E49F02 /* Relationship+CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD234D11C32FFB100E49F02 /* Relationship+CoreDataHelpers.swift */; };
+		8DD234D41C32FFDE00E49F02 /* Device+CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD234D31C32FFDE00E49F02 /* Device+CoreDataHelpers.swift */; };
 		8DD708301C15F693006570B4 /* RelationshipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD7082F1C15F693006570B4 /* RelationshipView.xib */; };
 		8DD708321C15F6A0006570B4 /* RelationshipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD708311C15F6A0006570B4 /* RelationshipView.swift */; };
 		8DD708361C15FF06006570B4 /* RelationshipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD708351C15FF06006570B4 /* RelationshipCollectionViewCell.swift */; };
@@ -96,6 +98,8 @@
 		8DC9B2051C2F723C00066065 /* BasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicTableViewCell.xib; sourceTree = "<group>"; };
 		8DC9B2071C2F725F00066065 /* BasicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTableViewCell.swift; sourceTree = "<group>"; };
 		8DC9B20A1C2F728B00066065 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
+		8DD234D11C32FFB100E49F02 /* Relationship+CoreDataHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Relationship+CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		8DD234D31C32FFDE00E49F02 /* Device+CoreDataHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device+CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		8DD7082F1C15F693006570B4 /* RelationshipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelationshipView.xib; sourceTree = "<group>"; };
 		8DD708311C15F6A0006570B4 /* RelationshipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipView.swift; sourceTree = "<group>"; };
 		8DD708351C15FF06006570B4 /* RelationshipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -343,6 +347,7 @@
 			children = (
 				8D5AA5791C151B3C00FBB1A2 /* Relationship.swift */,
 				8D3E78781C3231D400C0D369 /* Relationship+CoreDataProperties.swift */,
+				8DD234D11C32FFB100E49F02 /* Relationship+CoreDataHelpers.swift */,
 			);
 			name = Relationship;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 			children = (
 				8D37D2E21C15EC0700B8E148 /* Device.swift */,
 				8D3E78791C3231D400C0D369 /* Device+CoreDataProperties.swift */,
+				8DD234D31C32FFDE00E49F02 /* Device+CoreDataHelpers.swift */,
 			);
 			name = Device;
 			sourceTree = "<group>";
@@ -584,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DD234D41C32FFDE00E49F02 /* Device+CoreDataHelpers.swift in Sources */,
 				8DC9B2081C2F725F00066065 /* BasicTableViewCell.swift in Sources */,
 				8DC319891C138B4D00B4E6E0 /* SettingsTableViewController.swift in Sources */,
 				8D3E78771C3230D400C0D369 /* Glow.xcdatamodeld in Sources */,
@@ -604,6 +611,7 @@
 				8D37D2E11C15EB5B00B8E148 /* MainViewController.swift in Sources */,
 				8D710E931C2C82190076DEBF /* User.swift in Sources */,
 				8D3E787B1C3231D400C0D369 /* Device+CoreDataProperties.swift in Sources */,
+				8DD234D21C32FFB100E49F02 /* Relationship+CoreDataHelpers.swift in Sources */,
 				8D93DFA01C2E67BE0071C3E1 /* DeviceDetailTableViewController.swift in Sources */,
 				8DC9B20B1C2F728B00066065 /* TableCell.swift in Sources */,
 				8D710E951C2C847F0076DEBF /* LabelTextFieldTableViewCell.swift in Sources */,

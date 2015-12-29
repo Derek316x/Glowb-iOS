@@ -13,10 +13,6 @@ import CoreData
 
 class Device: NSManagedObject {
     
-    class var EntityName: String {
-        return "Device"
-    }
-    
     var type: String? {
         return [0: "Core", 6: "Photon"][particleDevice.type.rawValue]
     }
@@ -25,26 +21,24 @@ class Device: NSManagedObject {
         return particleDevice.connected
     }
     
-}
-
-
-// Core Data
-
-extension Device {
     
-    class func create(particle: SparkDevice, color: String) -> Device?
+    /* something like this */
+    
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        refresh()
+    }
+    
+    func refresh()
     {
-        guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
-            context = delegate.managedObjectContext,
-            device = NSEntityDescription.insertNewObjectForEntityForName(Device.EntityName, inManagedObjectContext: context) as? Device else
-        {
-            return nil
+        User.currentUser.particleAccount.getDevice(particleDevice.id) { (device: SparkDevice?, error: NSError?) -> Void in
+            if let device = device {
+                self.particleDevice = device
+                do {
+                    try self.save()
+                } catch _ {}
+            }
         }
-        
-        device.particleDevice = particle
-        device.color = color
-        
-        return device
     }
     
 }
