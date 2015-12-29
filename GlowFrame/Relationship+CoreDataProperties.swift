@@ -15,6 +15,7 @@ import UIKit
 
 extension Relationship {
 
+    @NSManaged var createdAt: NSDate
     @NSManaged var image: UIImage
     @NSManaged var name: String
     @NSManaged var device: Device

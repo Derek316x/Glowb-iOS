@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D1720CC1C2F913100111FF5 /* GlowbTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1720CB1C2F913100111FF5 /* GlowbTableViewCell.swift */; };
+		8D1B43411C323BF0004B73A1 /* ParticleDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1B43401C323BF0004B73A1 /* ParticleDevice.swift */; };
 		8D37D2E11C15EB5B00B8E148 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */; };
 		8D37D2E31C15EC0700B8E148 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37D2E21C15EC0700B8E148 /* Device.swift */; };
 		8D3E78771C3230D400C0D369 /* Glow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E78751C3230D400C0D369 /* Glow.xcdatamodeld */; };
@@ -62,6 +63,7 @@
 		3E29C4E24591EF95097E943E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4AFC7696F0DDAC677F92D606 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D1720CB1C2F913100111FF5 /* GlowbTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowbTableViewCell.swift; sourceTree = "<group>"; };
+		8D1B43401C323BF0004B73A1 /* ParticleDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleDevice.swift; sourceTree = "<group>"; };
 		8D37D2E01C15EB5B00B8E148 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8D37D2E21C15EC0700B8E148 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		8D3E78761C3230D400C0D369 /* Glow.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Glow.xcdatamodel; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				8D37D2E21C15EC0700B8E148 /* Device.swift */,
 				8D3E78791C3231D400C0D369 /* Device+CoreDataProperties.swift */,
 				8D9CC9BE1C154B1C000EC9FB /* ParticleAPIManager.swift */,
+				8D1B43401C323BF0004B73A1 /* ParticleDevice.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				8D5AA5831C1526CD00FBB1A2 /* HeartViewController.swift in Sources */,
 				8D3E787A1C3231D400C0D369 /* Relationship+CoreDataProperties.swift in Sources */,
 				8DC319871C138B4D00B4E6E0 /* AppDelegate.swift in Sources */,
+				8D1B43411C323BF0004B73A1 /* ParticleDevice.swift in Sources */,
 				8D1720CC1C2F913100111FF5 /* GlowbTableViewCell.swift in Sources */,
 				8D5C65BA1C260E8E00F48F98 /* DeviceManagementView.swift in Sources */,
 				8D5AA57A1C151B3C00FBB1A2 /* Relationship.swift in Sources */,

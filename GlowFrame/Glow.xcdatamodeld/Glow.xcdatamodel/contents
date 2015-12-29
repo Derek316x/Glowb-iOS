@@ -7,12 +7,13 @@
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Relationship" inverseName="device" inverseEntity="Relationship" syncable="YES"/>
     </entity>
     <entity name="Relationship" representedClassName=".Relationship" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="image" attributeType="Transformable" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="relationship" inverseEntity="Device" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Relationship" positionX="-18" positionY="27" width="128" height="90"/>
         <element name="Device" positionX="36" positionY="81" width="128" height="105"/>
+        <element name="Relationship" positionX="-18" positionY="27" width="128" height="105"/>
     </elements>
 </model>

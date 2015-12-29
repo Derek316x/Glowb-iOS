@@ -81,6 +81,17 @@ class SettingsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0: return "Particle Account"
+        case 1: return "Relationships"
+        default: return nil
+        }
+    }
+    
+    
+    // MARK: - Table view delegate
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         if indexPath.section == 0 && indexPath.row == 0 {
@@ -90,11 +101,16 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0: return "Particle Account"
-        case 1: return "Relationships"
-        default: return nil
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.section == 1
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let relationship = User.currentUser.relationships[indexPath.row]
+            Relationship.deleteEntity(relationship) {
+                self.tableView.reloadData()
+            }
         }
     }
 }

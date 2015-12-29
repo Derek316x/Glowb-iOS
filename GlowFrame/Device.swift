@@ -25,15 +25,19 @@ class Device: NSManagedObject {
         return particleDevice.connected
     }
     
-    init(device: SparkDevice, color: String)
+    class func create(particle: SparkDevice, color: String) -> Device?
     {
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = delegate.managedObjectContext
-        let entity = NSEntityDescription.entityForName(Device.EntityName, inManagedObjectContext: context)!
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
+            context = delegate.managedObjectContext,
+            device = NSEntityDescription.insertNewObjectForEntityForName(Device.EntityName, inManagedObjectContext: context) as? Device else
+        {
+            return nil
+        }
         
-        particleDevice = device
-        self.color = color
+        device.particleDevice = particle
+        device.color = color
+        
+        return device
     }
 
     func updateInfo(force: Bool = false, completion: (() -> Void)?) -> NSURLSessionTask?

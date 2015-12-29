@@ -15,22 +15,33 @@ struct RelationshipConstructor {
     var particleDevice: SparkDevice?
     var color: String?
     
-    
     // TODO: Validation
     
     func build() -> Relationship?
     {
-        guard let particleDevice = particleDevice,
-            image = image,
-            color = color,
-            name = name else {
+        guard let particleDevice = self.particleDevice,
+            image = self.image,
+            color = self.color,
+            name = self.name else {
                 return nil
         }
         
-        let device = Device(device: particleDevice, color: color)
-        let relationship = Relationship(image: image, device: device, name: name)
+        guard let device = Device.create(particleDevice, color: color),
+            relationship = Relationship.create(image, device: device, name: name) else {
+                return nil
+        }
         
-        return relationship
+        guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
+            context = delegate.managedObjectContext else {
+                return nil
+        }
+        
+        do {
+            try context.save()
+            return relationship
+        } catch _ {
+            return nil
+        }
     }
 }
 
@@ -41,7 +52,6 @@ class RelationshipTableViewController: UITableViewController,
     
     var constructor = RelationshipConstructor()
     var devices = User.currentUser.devices.sort { $0.name < $1.name }
-    var onCreateHandler: (() -> Void)?
     
     @IBOutlet weak var previewImageView: HighlightImageView!
     
@@ -107,15 +117,14 @@ class RelationshipTableViewController: UITableViewController,
     
     @objc private func save()
     {
-        guard let relationship = constructor.build() else {
-            print("invalid relationship")
-            return
-        }
-        User.currentUser.relationships.append(relationship)
-        dismissViewControllerAnimated(true, completion: nil)
-        
-        if let handler = onCreateHandler {
-            handler()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
+            guard let _ = self.constructor.build() else {
+                print("invalid relationship")
+                return
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
         }
     }
     

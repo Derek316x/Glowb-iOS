@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import Spark_SDK
+
+class ParticleDevice: SparkDevice {
+    
+    
+}

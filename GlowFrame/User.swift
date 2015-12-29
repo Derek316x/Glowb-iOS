@@ -8,11 +8,12 @@
 
 import Foundation
 import Spark_SDK
+import CoreData
 
-class User {
+class User: NSObject, NSFetchedResultsControllerDelegate {
     
     static let currentUser = User()
-    let particleAccount = SparkCloud.sharedInstance(    )
+    let particleAccount = SparkCloud.sharedInstance()
     var isLoggedInToParticle: Bool {
         return particleAccount.isLoggedIn
     }
@@ -20,8 +21,58 @@ class User {
         return particleAccount.loggedInUsername
     }
     
-    var relationships = [Relationship]()
+    lazy var fetchedResultsController: NSFetchedResultsController? = {
+        guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
+            context = delegate.managedObjectContext else {
+                return nil
+        }
+        
+        let request = NSFetchRequest(entityName: Relationship.EntityName)
+        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)];
+        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = self
+        
+        return controller
+    }()
+    
+    var relationships: [Relationship] {
+        guard let controller = fetchedResultsController else {
+            return [Relationship]()
+        }
+        
+        if let objects = controller.fetchedObjects as? [Relationship] {
+            return objects
+        }
+        
+        return [Relationship]()
+    }
+    
     var devices = Set<SparkDevice>()
+    
+    override init()
+    {
+        super.init()
+        
+        guard let controller = fetchedResultsController else {
+            return
+        }
+        
+        do {
+            try controller.performFetch()
+        } catch _ {}
+        
+        setup()
+    }
+    
+    private func setup()
+    {
+        loadSavedRelationships()
+    }
+    
+    private func loadSavedRelationships()
+    {
+        
+    }
     
     func getDevice(deviceID: String, force: Bool = false, completion: ((SparkDevice?, NSError?) -> Void)?) -> NSURLSessionDataTask?
     {
@@ -48,13 +99,20 @@ class User {
         }
     }
     
-    func getDevices(completion: (([SparkDevice]?, NSError?) -> Void)?) -> NSURLSessionDataTask? {
+    func getDevices(completion: (([SparkDevice]?, NSError?) -> Void)?) -> NSURLSessionDataTask?
+    {
         return particleAccount.getDevices({ (devices: [SparkDevice]?, error: NSError?) -> Void in
             if let devices = devices {
                 self.devices = Set(devices)
             }
             completion?(devices, error)
         })
+    }
+    
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
+    {
+       // Not sure, but implementing this method updates `fetchedObjects`
     }
     
 }
