@@ -27,7 +27,9 @@ class Device: NSManagedObject {
             guard error == nil else { return }
             do {
                 try self.save()
-            } catch {}
+            } catch {
+                print("There was a problem saving this device: \(self.particleDevice.name)")
+            }
         }
     }
     

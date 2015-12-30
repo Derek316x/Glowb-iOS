@@ -33,7 +33,7 @@ extension Relationship {
         return relationship
     }
     
-    class func delete(relationship: Relationship, completion: ((Bool) -> Void)?)
+    class func delete(relationship: Relationship, completion: ((Bool) -> Void)?) throws
     {
         guard let delegate = UIApplication.sharedApplication().delegate as? AppDelegate,
             context = delegate.managedObjectContext else {
